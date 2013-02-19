@@ -6,8 +6,24 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    .navbar
-      .navbar-inner
-        %a .brand
+    #wrap
+      .navbar
+        .navbar-inner
+          %a.brand Ecotunes
+          %ul.nav
+            %li
+              %a Test1
+            %li
+              %a Test2
+            %li
+              %a Test3
+          %form.navbar-search.pull-right
+            %input.search-query{:placeholder => "Musik suchen"}
+      .container
+        = yield
+    #footer
+      #player Hier kommt der Player hin
+  
 
-    = yield
+
+

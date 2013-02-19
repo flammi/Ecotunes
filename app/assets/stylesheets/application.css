@@ -11,3 +11,28 @@
  *= require_self
  *= require_tree .
  */
+
+@import "bootstrap";
+
+html, body {
+  height: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -60px;
+}
+
+#footer {
+  background-color: #eee;
+  height: 60px;
+}
+
+#player {
+  width: 300px;
+  height: 30px;
+  background-color: #000;
+  margin: 0px auto;
+}
