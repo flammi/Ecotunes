@@ -7,9 +7,14 @@
   background-image: linear-gradient(to bottom, white, #F2F2F2);
   border-radius: 10px;
   padding: 5px;
+  clear: both;
 }
 
 .musicpanel .paging {
   float:right;
 }
 
+ul.col {
+  float: left;
+  width: 250px;
+}
