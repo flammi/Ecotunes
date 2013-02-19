@@ -10,10 +10,11 @@
  *
  *= require_self
  *= require_tree .
+ *= require font-awesome
  */
 
-@import "font-awesome";
 @import "bootstrap";
+
 
 html, body {
   height: 100%;

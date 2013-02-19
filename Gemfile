@@ -4,7 +4,7 @@ gem 'rails', '3.2.12'
 gem 'bootstrap-sass'
 gem 'rb-readline'
 gem 'haml'
-gem 'font-awesome-rails'
+gem 'font-awesome-sass-rails'
 
 
 # Bundle edge Rails instead:
