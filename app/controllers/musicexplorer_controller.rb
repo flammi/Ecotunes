@@ -7,7 +7,7 @@ class MusicexplorerController < ApplicationController
     @songs = Song.all
     @albums = Album.all
 
-    render json: @artists.to_json(:include => {:albums => {:include => :songs}})
+    render json: @artists.to_json(:include => [:songs , {:albums => {:include => :songs}}]);
   end
 
 end
