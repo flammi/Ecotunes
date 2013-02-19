@@ -2,6 +2,8 @@ Ecotunes::Application.routes.draw do
   get "musicexplorer/explorer"
   root :to => "musicexplorer#explorer"
 
+  get "musicexplorer/search"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
