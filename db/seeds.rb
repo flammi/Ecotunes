@@ -1,3 +1,4 @@
+# -*- coding:UTF-8 -*-
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -7,5 +8,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 artists = Artist.create([ { name: 'Eminem' }, { name: 'Die toten Hosen' }, { name: 'Madonna' } ])
-albums = Album.create([ { name: 'Slim Shady' }, { name: 'Ballast der Republik' }, { name: 'Celebration' } ])
-songs = Song.create([ { name: 'Tage wie diese' }, { name: 'Altes Fieber' }, { name: 'Ich würde nie zum FC Bayern gehen' } ])
+albums = Album.create([ 
+  { name: 'Slim Shady', artist: artists[0]}, 
+  { name: 'Ballast der Republik', artist: artists[1]}, 
+  { name: 'Celebration', artist: artists[2] } ])
+songs = Song.create([ 
+ { title: 'Tage wie diese', album: albums[0], artist: artists[0] },
+ { title: 'Altes Fieber', album: albums[1], artist: artists[0] }, 
+ { title: 'Ich würde nie zum FC Bayern gehen', album: albums[2], artist: artists[0] } ])
