@@ -3,11 +3,12 @@ class MusicexplorerController < ApplicationController
   end
 
   def search
-    @artists = Artist.all
-    @songs = Song.all
-    @albums = Album.all
+    filter = params[:filter]
+    @artists = Artist.where('name LIKE ?', "%" + filter + "%")
+    @songs = Song.where('title LIKE ?', "%" + filter + "%")
+    @albums = Album.where('name LIKE ?', "%" + filter + "%")
 
-    render json: @artists.to_json(:include => [:albums , :songs => {:include => :album}]);
+    render json: @artists.to_json(:include => [:albums , :songs => {:include => :albums}]);
   end
 
 end

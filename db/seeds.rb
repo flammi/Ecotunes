@@ -13,22 +13,28 @@ Song.delete_all
 
 artists = Artist.create([ { name: 'Eminem' }, { name: 'Die Toten Hosen' }, { name: 'Atreyu' } ])
 albums = Album.create([ 
-  { name: 'Infinite', artist: artists[0]}, 
-  { name: 'The Slim Shady EP', artist: artists[0]}, 
-  { name: 'The Slim Shady LP', artist: artists[0]}, 
-  { name: 'The Marshall Mathers LP', artist: artists[0]}, 
-  { name: 'The Eminem Show', artist: artists[0]}, 
-  { name: 'Opel-Gang', artist: artists[1]}, 
-  { name: 'Unter falscher Flagge', artist: artists[1]}, 
-  { name: 'Damenwahl', artist: artists[1]}, 
-  { name: 'Kauf MICH!', artist: artists[1]},
-  { name: 'The Curse', artist: artists[2] },
-  { name: 'A Death-Grip on Yesterday', artist: artists[2] },
-  { name: 'Lead Sails Paper Anchor', artist: artists[2] },
-  { name: 'Congregation of the Damned', artist: artists[2] } ])
+  { name: 'Infinite' }, 
+  { name: 'The Slim Shady EP' }, 
+  { name: 'The Slim Shady LP' }, 
+  { name: 'The Marshall Mathers LP' }, 
+  { name: 'The Eminem Show' }, 
+  { name: 'Opel-Gang' },
+  { name: 'Unter falscher Flagge' },
+  { name: 'Damenwahl' }, 
+  { name: 'Kauf MICH!' },
+  { name: 'The Curse' },
+  { name: 'A Death-Grip on Yesterday' },
+  { name: 'Lead Sails Paper Anchor' },
+  { name: 'Congregation of the Damned' } ])
 songs = Song.create([ 
- { title: 'Shameful', album: albums[10], artist: artists[2] },
- { title: 'The Theft', album: albums[10], artist: artists[2] }, 
- { title: 'Ex’s and Oh’s', album: albums[10], artist: artists[2] },
- { title: 'Ich habe kein Album', artist: artists[0] } 
+ { title: 'Lose Yourself' },
+ { title: 'Shameful' },
+ { title: 'The Theft' }, 
+ { title: 'Ex’s and Oh’s' },
+ { title: 'Ich habe kein Album'} 
  ])
+
+artists[0].albums << albums[0]
+albums[0].songs << songs[0]
+artists[0].songs << songs[0]
+

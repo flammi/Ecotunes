@@ -1,6 +1,5 @@
 class Album < ActiveRecord::Base
-  attr_accessible :artist_id, :name, :release, :artist, :songs
-  belongs_to :artist
-  has_many :songs, :uniq => true
-  accepts_nested_attributes_for :songs
+  attr_accessible :name, :release, :artists, :songs
+  has_and_belongs_to_many :artists
+  has_and_belongs_to_many :songs
 end

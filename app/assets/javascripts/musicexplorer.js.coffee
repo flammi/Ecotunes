@@ -4,7 +4,7 @@
 
 $(document).ready ->
   $("#search").keyup -> 
-    $.getJSON("/musicexplorer/search", {}, (json, resp) -> 
+    $.getJSON("/musicexplorer/search?filter=" + $("#search").val(), {}, (json, resp) -> 
       $("#0_col_artist").empty();
       $("#1_col_artist").empty();
       $("#2_col_artist").empty();
