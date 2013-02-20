@@ -5,15 +5,25 @@
 $(document).ready ->
   $("#search").keyup -> 
     $.getJSON("/musicexplorer/search", {}, (json, resp) -> 
+      $("#0_col_artist").empty();
+      $("#1_col_artist").empty();
+      $("#2_col_artist").empty();
+
+      $("#0_col_album").empty();
+      $("#1_col_album").empty();
+      $("#2_col_album").empty();
+
+      $("#0_col_song").empty();
+      $("#1_col_song").empty();
+      $("#2_col_song").empty();
+
       $(json).each (artIndex, artist) ->
-        artist_name = artist.name;
-        $(artist.albums).each (albIndex, album) ->
-          album_name = album.name;
-          album_release = album.release;
-          $(album.songs).each (songIndex, song) ->
-            song_title = song.title;
-            song_length = song.length;
-            song_path = song.path;
-            song_released = song.released;
-            alert('Künstler ' + artist_name + ' Album: ' + album_name + ' Song: ' + song_title);
+        $("#" + artIndex % 3 + "_col_artist").append("<li>" + artist.name + "</li>");
+
+        $(artist.songs).each (songIndex, song) ->
+            $("#" + songIndex % 3 + "_col_song").append("<li>" + song.title + "</li>");
+
+        if artist.albums != undefined
+          $(artist.albums).each (albIndex, album) ->
+            $("#" + albIndex % 3 + "_col_album").append("<li>" + album.name + "</li>");
       );
