@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails'
 gem 'bootstrap-sass'
 gem 'rb-readline'
 gem 'haml'
@@ -18,19 +18,19 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.5'
-  gem 'coffee-rails', '~> 3.2.2'
+  gem 'sass-rails'
+  gem 'coffee-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier', '>= 1.2.3'
+  gem 'uglifier'
 end
 
 gem 'jquery-rails'
 
 group :test do
-	gem 'capybara', '1.1.2'
+	gem 'capybara'
 end
 
 # To use ActiveModel has_secure_password

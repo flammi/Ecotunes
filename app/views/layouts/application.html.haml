@@ -7,18 +7,16 @@
     = csrf_meta_tags
   %body
     #wrap
-      .navbar
+      .navbar.navbar-static
         .navbar-inner
-          %a.brand Ecotunes
-          %ul.nav
-            %li
-              %a Test1
-            %li
-              %a Test2
-            %li
-              %a Test3
-          %form.navbar-search.pull-right
-            %input#search.search-query{:placeholder => "Musik suchen"}
+          .container
+            = link_to "Ecotunes", nil, :class => "brand"
+            %ul.nav
+              %li= link_to "Test1", nil
+              %li= link_to "Test2", nil
+              %li= link_to "Test3", nil
+            %form.navbar-search.pull-right
+              %input#search.search-query{:placeholder => "Musik suchen", :type => "text"}
       .container
         = yield
     #footer
