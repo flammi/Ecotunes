@@ -27,11 +27,11 @@ albums = Album.create([
   { name: 'Lead Sails Paper Anchor' },
   { name: 'Congregation of the Damned' } ])
 songs = Song.create([ 
- { title: 'Lose Yourself' },
- { title: 'Shameful' },
- { title: 'The Theft' }, 
- { title: 'Ex’s and Oh’s' },
- { title: 'Ich habe kein Album'} 
+ { title: 'Lose Yourself', path:'loseyourself.mp3' },
+ { title: 'Shameful', path:'fallingdown.mp3' },
+ { title: 'The Theft', path:'fallingdown.mp3' }, 
+ { title: 'Ex’s and Oh’s', path:'fallingdown.mp3' },
+ { title: 'Ich habe kein Album', path:'fallingdown.mp3'} 
  ])
 
 artists[0].albums << albums[0]

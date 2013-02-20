@@ -3,6 +3,14 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready ->
+
+  $("#jquery_jplayer_1").jPlayer
+    ready: ->
+      $(this).jPlayer "setMedia",
+        mp3: "/musicexplorer/stream_song?filename=fallingdown.mp3"
+    swfPath: "/js"
+    supplied: "mp3, oga"
+
   $("#search").keyup -> 
     $.getJSON("/musicexplorer/search?filter=" + $("#search").val(), {}, (json, resp) -> 
       $("#0_col_artist").empty();
@@ -24,16 +32,9 @@ $(document).ready ->
         $(obj.albums).each (albIndex, album) ->
           $("#" + albIndex % 3 + "_col_album").append("<li>" + album.name + "</li>");
         $(obj.songs).each (songIndex, song) ->
-          $("#" + songIndex % 3 + "_col_song").append("<li>" + song.title + "</li>");
+          $("#" + songIndex % 3 + "_col_song").append("<li data-path=\"" + song.path + "\">" + song.title + "</li>");
+      $("#0_col_song,#1_col_song,#2_col_song").on "click", "li", ->
+        $("#jquery_jplayer_1").jPlayer "setMedia", {mp3: "/musicexplorer/stream_song?filename=" + $(this).data("path")}
+        $("#jquery_jplayer_1").jPlayer "play"
       );
 
-$(document).ready ->
-  $("#jquery_jplayer_1").jPlayer
-    ready: ->
-      $(this).jPlayer "setMedia",
-        m4a: "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a"
-        oga: "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
-
-
-    swfPath: "/js"
-    supplied: "m4a, oga"
