@@ -17,13 +17,12 @@ $(document).ready ->
       $("#1_col_song").empty();
       $("#2_col_song").empty();
 
-      $(json).each (artIndex, artist) ->
-        $("#" + artIndex % 3 + "_col_artist").append("<li>" + artist.name + "</li>");
 
-        $(artist.songs).each (songIndex, song) ->
-            $("#" + songIndex % 3 + "_col_song").append("<li>" + song.title + "</li>");
-
-        if artist.albums != undefined
-          $(artist.albums).each (albIndex, album) ->
-            $("#" + albIndex % 3 + "_col_album").append("<li>" + album.name + "</li>");
+      $(json).each (objIndex, obj) ->
+        $(obj.artists).each (artistIndex, artist) ->
+          $("#" + artistIndex % 3 + "_col_artist").append("<li>" + artist.name + "</li>");
+        $(obj.albums).each (albIndex, album) ->
+          $("#" + albIndex % 3 + "_col_album").append("<li>" + album.name + "</li>");
+        $(obj.songs).each (songIndex, song) ->
+          $("#" + songIndex % 3 + "_col_song").append("<li>" + song.title + "</li>");
       );
