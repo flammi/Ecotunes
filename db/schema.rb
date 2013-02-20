@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220084532) do
+ActiveRecord::Schema.define(:version => 20130220170743) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -47,8 +47,12 @@ ActiveRecord::Schema.define(:version => 20130220084532) do
     t.string   "path"
     t.datetime "released"
     t.integer  "genre_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "attach_file_name"
+    t.string   "attach_content_type"
+    t.integer  "attach_file_size"
+    t.datetime "attach_updated_at"
   end
 
 end

@@ -10,11 +10,14 @@
       .navbar.navbar-static
         .navbar-inner
           .container
-            = link_to "Ecotunes", nil, :class => "brand"
+            .brand
+              %i.icon-music.icon
+              = link_to "EcoTunes", root_path
+              %i.icon-music.icon
             %ul.nav
-              %li= link_to "Test1", nil
-              %li= link_to "Test2", nil
-              %li= link_to "Test3", nil
+              %li= link_to "Musik hinzufügen", musicupload_path
+              %li= link_to "Playlist generieren", playlist_path
+              %li= link_to "Informationen", nil
             %form.navbar-search.pull-right
               %input#search.search-query{:placeholder => "Musik suchen", :type => "text"}
       .container

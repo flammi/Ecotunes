@@ -1,9 +1,16 @@
 Ecotunes::Application.routes.draw do
+  resources :songs
+
+  get "playlist_generator/Playlist"
+
   get "musicexplorer/explorer"
   root :to => "musicexplorer#explorer"
 
   get "musicexplorer/search"
   get "musicexplorer/stream_song"
+
+  get "songs/new", :as => :musicupload
+  get "playlist_generator/Playlist", :as => :playlist
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
