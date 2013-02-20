@@ -32,7 +32,7 @@ $(document).ready ->
         $(obj.albums).each (albIndex, album) ->
           $("#" + albIndex % 3 + "_col_album").append("<li>" + album.name + "</li>");
         $(obj.songs).each (songIndex, song) ->
-          $("#" + songIndex % 3 + "_col_song").append("<li data-path=\"" + song.attach_file_name + "\" + data-description=\"" + song.title + "\">" + song.title + "</li>");
+          $("#" + songIndex % 3 + "_col_song").append("<li data-path=\"" + song.attach_file_name + "\" + data-description=\"" + song.title + "\"><a href=\"#\">" + song.title + "</a></li>");
       $("#0_col_song,#1_col_song,#2_col_song").on "click", "li", ->
         $("#jquery_jplayer_1").jPlayer "setMedia", {mp3: "http://localhost:3000/system/songs/attaches/" + $(this).data("path")}
         $("#jquery_jplayer_1").jPlayer "play"
