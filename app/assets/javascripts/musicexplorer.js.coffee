@@ -33,9 +33,9 @@ fillList = (jsonString) ->
 
   $(jsonString).each (objIndex, obj) ->
     $(obj.artists).each (artistIndex, artist) ->
-      $("#" + artistIndex % 3 + "_col_artist").append("<li>" + artist.name + "</li>");
+      $("#" + artistIndex % 3 + "_col_artist").append(getArtistLayout artist);
     $(obj.albums).each (albIndex, album) ->
-      $("#" + albIndex % 3 + "_col_album").append("<li>" + album.name + "</li>");
+      $("#" + albIndex % 3 + "_col_album").append(getAlbumLayout album);
     $(obj.songs).each (songIndex, song) ->
       $("#" + songIndex % 3 + "_col_song").append(getSongLayout song);
 
@@ -43,6 +43,45 @@ fillList = (jsonString) ->
     $("#jquery_jplayer_1").jPlayer "setMedia", {mp3: "http://localhost:3000/system/songs/attaches/" + $(this).data("path")}
     $("#jquery_jplayer_1").jPlayer "play"
     $("#song-description").text $(this).data("description")
+
+
+getArtistLayout = (artist) ->
+  string =  """
+            <div class="btn-group open">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> 
+               #{ artist.name }
+                <span class="icon-caret-down"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/artists/ #{ artist.id }">
+                    <i class="i"></i>
+                    Show Details
+                  </a>
+                </li>
+              </ul>
+            </div>
+            """;
+  return string;
+
+getAlbumLayout = (album) ->
+  string =  """
+            <div class="btn-group open">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> 
+               #{ album.name }
+                <span class="icon-caret-down"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/albums/ #{ album.id }">
+                    <i class="i"></i>
+                    Show Details
+                  </a>
+                </li>
+              </ul>
+            </div>
+            """;
+  return string;
 
 getSongLayout = (song) ->
   string =  """
@@ -52,11 +91,11 @@ getSongLayout = (song) ->
                 <span class="icon-caret-down"></span>
               </a>
               <ul class="dropdown-menu">
-                <li>
-                    <a class="play-song" data-path= #{song.attach_file_name} data-description= #{song.title}>
-                      <i class="icon-volume-up"></i>
+                <li class="play-song" data-path= #{song.attach_file_name} data-description= #{song.title}>
+                  <a class="some-other-class">
+                    <i class="icon-volume-up"></i>
                       Play
-                    </a>
+                  </a>
                 </li>
                 <li class="divider"></li>
                 <li>

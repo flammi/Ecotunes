@@ -74,7 +74,7 @@ class SongsController < ApplicationController
           if artist != nil
             @song.artists << artist
           else
-            artist = Artist.new
+            artist = Artist.create
             artist.name = tag.artist
             @song.artists << artist
             artist.save
@@ -84,7 +84,7 @@ class SongsController < ApplicationController
           if album != nil
             @song.albums << album
           else
-            album = Album.new
+            album = Album.create
             album.name = tag.album
             @song.albums << album
             album.save
