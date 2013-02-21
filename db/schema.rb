@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20130221143418) do
     t.string   "path"
     t.datetime "released"
     t.integer  "genre_id"
+    t.float    "finger_print"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.string   "attach_file_name"
