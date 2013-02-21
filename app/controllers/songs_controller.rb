@@ -1,3 +1,6 @@
+require "rubygems"
+require "mp3info"
+
 class SongsController < ApplicationController
   # GET /songs
   # GET /songs.json
@@ -14,6 +17,13 @@ class SongsController < ApplicationController
   # GET /songs/1.json
   def show
     @song = Song.find(params[:id])
+
+    Mp3Info.open( @song.attach.path ) do |mp3|
+      @duration = view_context.seconds_to_duration(mp3.length)
+      @bitrate = mp3.bitrate
+      @channel_mode = mp3.channel_mode
+      @tag = mp3.tag
+    end
 
     respond_to do |format|
       format.html # show.html.erb

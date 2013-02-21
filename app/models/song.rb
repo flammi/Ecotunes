@@ -5,7 +5,7 @@ class Song < ActiveRecord::Base
   has_attached_file :attach,
     :url => "/system/:class/:attachment/:basename.:extension"
  
-   def validate
+  def validate
     file = self.attach.to_file(:original)
     data = File.read(file)
     # Do some validation on data

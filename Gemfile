@@ -6,6 +6,7 @@ gem 'rb-readline'
 gem 'haml'
 gem 'font-awesome-sass-rails'
 gem 'paperclip'
+gem 'ruby-mp3info'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

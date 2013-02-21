@@ -117,6 +117,7 @@ GEM
       rspec-core (~> 2.12.0)
       rspec-expectations (~> 2.12.0)
       rspec-mocks (~> 2.12.0)
+    ruby-mp3info (0.8)
     rubyzip (0.9.9)
     sass (3.2.5)
     sass-rails (3.2.6)
@@ -161,6 +162,7 @@ DEPENDENCIES
   rails
   rb-readline
   rspec-rails
+  ruby-mp3info
   sass-rails
   sqlite3
   uglifier
