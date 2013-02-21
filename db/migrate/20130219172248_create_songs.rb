@@ -7,7 +7,11 @@ class CreateSongs < ActiveRecord::Migration
       t.datetime :released
       t.integer :genre_id
       t.float :finger_print
+      t.integer :bitrate 
+      t.string :channel_mode #e.g. Stereo
       t.timestamps
+      t.integer :sample_rate
+      t.integer :mpeg_version
     end
   end
 end

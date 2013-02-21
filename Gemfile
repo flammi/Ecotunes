@@ -7,6 +7,7 @@ gem 'haml'
 gem 'font-awesome-sass-rails'
 gem 'paperclip'
 gem 'ruby-mp3info'
+gem 'better_errors'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

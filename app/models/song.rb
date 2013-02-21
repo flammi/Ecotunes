@@ -1,5 +1,5 @@
 class Song < ActiveRecord::Base
-  attr_accessible :artists, :genre_id, :length, :path, :released, :title, :albums, :attach, :genre, :finger_print
+  attr_accessible :artists, :genre_id, :length, :path, :released, :title, :albums, :attach, :genre, :finger_print, :bitrate, :channel_mode, :sample_rate, :mpeg_version
   has_and_belongs_to_many :artists
   has_and_belongs_to_many :albums
   belongs_to :genre

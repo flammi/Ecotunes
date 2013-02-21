@@ -17,20 +17,7 @@ class SongsController < ApplicationController
   # GET /songs/1.json
   def show
     @song = Song.find(params[:id])
-
-    Mp3Info.open( @song.attach.path ) do |mp3|
-      @duration = view_context.seconds_to_duration(mp3.length)
-      @bitrate = mp3.bitrate
-      @channel_mode = mp3.channel_mode
-      if mp3.tag != {}
-        @tag = mp3.tag
-      elsif mp3.tag2 != {}
-        @tag = mp3.tag2
-      else
-        @tag = {}
-      end
-        
-    end
+    @duration = view_context.seconds_to_duration(@song.length) 
 
     respond_to do |format|
       format.html # show.html.erb
@@ -58,6 +45,70 @@ class SongsController < ApplicationController
   # POST /songs.json
   def create
     @song = Song.new(params[:song])
+
+    if @song.attach != nil 
+      tag = {}
+      if @song.save
+        Mp3Info.open( @song.attach.path ) do |mp3|
+          @song.length = mp3.length
+          @song.bitrate = mp3.bitrate
+          @song.channel_mode = mp3.channel_mode
+          @song.sample_rate = mp3.samplerate
+          @song.mpeg_version = mp3.mpeg_version
+          
+          if mp3.tag != {}
+            tag = mp3.tag
+          elsif mp3.tag2 != {}
+            tag = mp3.tag2
+          end
+        end
+
+        #Set tags
+        if tag != {}
+
+          @song.title = tag.title
+          #needed in album and artist
+          artist = nil
+          
+          artist = Artist.where( :name == tag.artist).first
+          if artist != nil
+            @song.artists << artist
+          else
+            artist = Artist.new
+            artist.name = tag.artist
+            @song.artists << artist
+            artist.save
+          end
+
+          album = Album.where( :name == tag.album).first
+          if album != nil
+            @song.albums << album
+          else
+            album = Album.new
+            album.name = tag.album
+            @song.albums << album
+            album.save
+          end
+
+          if album != nil
+              if artist.albums.where(:album_id == album.id) == nil
+                artist.albums << new_album
+              end
+          end
+
+            #only tracknum, if album exists
+            if tag.tracknum != nil
+              #TODO wie behandeln wir das? Man brauch wohl ne neue Klasse... ein Song hat pro Album halt eine neue Tracknr
+            end
+
+            @song.released = tag.year
+
+          if tag.genre_s != nil
+          end
+
+        end
+      end
+    end   
 
     respond_to do |format|
       if @song.save
@@ -97,4 +148,5 @@ class SongsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end
