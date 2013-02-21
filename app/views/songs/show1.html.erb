@@ -1,0 +1,18 @@
+<h2><%=@song.title %> </h2>
+<h4>Länge: <%=@duration %> </h4>
+<h4>Bitrate: <%=@bitrate %> kbp/s </h4>
+<h4>Kanal: <%=@channel_mode %> </h4>
+<h4>
+
+ <a href="<%= @song.attach.url %> ">
+            <b> File attached </b></a>
+ <br/>
+<br>
+
+<h2><%= 
+  if @tag == nil
+    Hallo
+  end
+%></h2>
+<%= link_to 'Edit', edit_song_path(@song) %> |
+<%= link_to 'Back', songs_path %>

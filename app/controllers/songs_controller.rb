@@ -22,7 +22,14 @@ class SongsController < ApplicationController
       @duration = view_context.seconds_to_duration(mp3.length)
       @bitrate = mp3.bitrate
       @channel_mode = mp3.channel_mode
-      @tag = mp3.tag
+      if mp3.tag != {}
+        @tag = mp3.tag
+      elsif mp3.tag2 != {}
+        @tag = mp3.tag2
+      else
+        @tag = {}
+      end
+        
     end
 
     respond_to do |format|

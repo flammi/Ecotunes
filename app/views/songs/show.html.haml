@@ -1,0 +1,21 @@
+%h2 
+  = @song.title
+%h4
+  .basic_info
+    %ul
+      %li Länge: #{@duration}
+      %li Bitrate: #{@bitrate} kbp/s
+      %li Kanal: #{@channel_mode}
+  .tag_info 
+    -if @tag == {} 
+      Keine Tags vorhanden
+    -else
+      %ul
+        -@tag.each do |key, val|
+          %li #{key}: #{val} 
+
+  
+%a{:href => "#{@song.attach.url} "}
+  %b Song herunterladen
+
+
