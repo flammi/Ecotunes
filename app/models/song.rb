@@ -1,7 +1,8 @@
 class Song < ActiveRecord::Base
-  attr_accessible :artists, :genre_id, :length, :path, :released, :title, :albums, :attach
+  attr_accessible :artists, :genre_id, :length, :path, :released, :title, :albums, :attach, :genre
   has_and_belongs_to_many :artists
   has_and_belongs_to_many :albums
+  belongs_to :genre
   has_attached_file :attach,
     :url => "/system/:class/:attachment/:basename.:extension"
  
