@@ -37,35 +37,8 @@ fillList = (jsonString) ->
     $(obj.albums).each (albIndex, album) ->
       $("#" + albIndex % 3 + "_col_album").append("<li>" + album.name + "</li>");
     $(obj.songs).each (songIndex, song) ->
-      $("#" + songIndex % 3 + "_col_song").append(getSongLayout song);
-
-  $("#play-song").on "click", "li", ->
+      $("#" + songIndex % 3 + "_col_song").append("<li data-path=\"" + song.attach_file_name + "\" + data-description=\"" + song.title + "\"><a href=\"#\">" + song.title + "</a></li>");
+  $("#0_col_song,#1_col_song,#2_col_song").on "click", "li", ->
     $("#jquery_jplayer_1").jPlayer "setMedia", {mp3: "http://localhost:3000/system/songs/attaches/" + $(this).data("path")}
     $("#jquery_jplayer_1").jPlayer "play"
     $("#song-description").text $(this).data("description")
-
-getSongLayout = (song) ->
-  string =  """
-            <div class="btn-group open">
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> 
-               #{ song.title }
-                <span class="icon-caret-down"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="play-song" data-path= #{song.attach_file_name} data-description= #{song.title}>
-                  <a class="play-song" data-path= #{song.attach_file_name} data-description= #{song.title}>
-                    <i class="icon-volume-up"></i>
-                    Play
-                  </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="/songs/ #{ song.id }">
-                    <i class="i"></i>
-                    Show Details
-                  </a>
-                </li>
-              </ul>
-            </div>
-            """;
-  return string;
