@@ -1,10 +1,11 @@
 class Song < ActiveRecord::Base
   attr_accessible :song, :artists, :genre_id, :length, :path, :released, :title, :albums, :genre, :finger_print, :bitrate, :channel_mode, :sample_rate, :mpeg_version, :playlists
-  has_attached_file :song
   has_and_belongs_to_many :artists
   has_and_belongs_to_many :albums
   has_and_belongs_to_many :playlists
   belongs_to :genre
+  has_attached_file :song,
+    :url => "/system/:class/:attachment/:basename.:extension"
 
 include Rails.application.routes.url_helpers
 
