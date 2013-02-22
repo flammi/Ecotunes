@@ -14,4 +14,8 @@ class CreateSongs < ActiveRecord::Migration
       t.integer :mpeg_version
     end
   end
+
+  def self.down
+    drop_table :songs
+  end
 end

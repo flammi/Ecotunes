@@ -10,6 +10,17 @@ class PlaylistsController < ApplicationController
     end
   end
 
+def newsong
+    @playlist = Playlist.find(params[:playlistid])
+    @song = Song.find_by_id(params[:songid])
+    @playlist.songs << @song
+    if @playlist.save
+      render :json => { }
+    else
+      render :json => { }, :status => 500
+    end
+end
+
   # GET /playlists/1
   # GET /playlists/1.json
   def show

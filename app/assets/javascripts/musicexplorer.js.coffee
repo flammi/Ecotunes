@@ -40,8 +40,7 @@ fillList = (jsonString) ->
             addSongToPlaylist $(this).data("playlistid"), song.id
 
 addSongToPlaylist = (playlistid, songid) ->
-  $.getJSON("/playlists/#{playlistid}/new?songid=#{songid}", {}, (json, resp) ->
-    alert "success"
-  );
-
+  $.post("/playlists/newsong", songid: "#{songid}", playlistid: "#{playlistid}").done (data) ->
+    #$("#alert-info").opacity = 1 #pruefen ob code 200 zurueckkam
+    #$("#alert-info").delay(2200).fadeOut(300);
 

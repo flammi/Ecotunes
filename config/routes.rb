@@ -1,11 +1,10 @@
 Ecotunes::Application.routes.draw do
   
   resources :playlists
-
-
   resources :artists
   resources :albums
   resources :songs
+
 
   get "playlist_generator/Playlist"
 
@@ -15,6 +14,7 @@ Ecotunes::Application.routes.draw do
   get "musicexplorer/search"
   get "musicexplorer/stream_song"
 
+  post "playlists/newsong", :as => :new_song
   get "songs/new", :as => :musicupload
   get "playlist_generator/Playlist", :as => :playlist
 
