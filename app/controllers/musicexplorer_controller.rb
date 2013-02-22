@@ -11,7 +11,9 @@ class MusicexplorerController < ApplicationController
     @songs = Song.where('title LIKE ?', "%" + filter + "%")
     @albums = Album.where('name LIKE ?', "%" + filter + "%")
 
-    render json: {:artists => @artists, :albums => @albums, :songs => @songs}
+
+
+    render json: {:songs => @songs}
   end
 
   def stream_song

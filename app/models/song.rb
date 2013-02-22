@@ -14,4 +14,11 @@ class Song < ActiveRecord::Base
     errors.add_to_base "File format invalid" if data.nil?
   end
 
+  def as_json(options={})
+    {:title => self.title,
+     :duration => self.length,
+     :albums => self.albums,
+     :artists => self.artists}
+  end
+
 end

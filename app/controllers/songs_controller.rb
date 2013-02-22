@@ -70,7 +70,7 @@ class SongsController < ApplicationController
           #needed in album and artist
           artist = nil
           
-          artist = Artist.where( :name == tag.artist).first
+          artist = Artist.find_by_name(tag.artist)
           if artist != nil
             @song.artists << artist
           else
@@ -80,18 +80,19 @@ class SongsController < ApplicationController
             artist.save
           end
 
-          album = Album.where( :name == tag.album).first
+          album = Album.find_by_name(tag.album)
           if album != nil
             @song.albums << album
           else
             album = Album.create
             album.name = tag.album
+            album.artists << artist
             @song.albums << album
             album.save
           end
 
           if album != nil
-              if artist.albums.where(:album_id == album.id) == nil
+              if artist.albums.find_by_id(album.id) == nil
                 artist.albums << new_album
               end
           end
