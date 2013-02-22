@@ -1,5 +1,6 @@
 class MusicexplorerController < ApplicationController
   def explorer
+     @playlists = Playlist.all
   end
 
   def search
@@ -12,7 +13,6 @@ class MusicexplorerController < ApplicationController
     @albums = Album.where('name LIKE ?', "%" + filter + "%")
 
 
-
     render json: {:songs => @songs}
   end
 
@@ -20,4 +20,6 @@ class MusicexplorerController < ApplicationController
     param = params[:filename]
     send_file "/home/daniel/awe07/ecotunes/public/" + param, :type=>"audio/mp3", :stream => true, :buffer_size => 4096
   end
+
+
 end

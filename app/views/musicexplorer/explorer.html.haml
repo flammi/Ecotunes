@@ -19,9 +19,21 @@
       %td.row-album 
       %td.row-buttons
         .button-container
-          %a.btn.btn-small.play-btn
-            %i.icon-play
-              Play
-          %a.btn.btn-small.search-btn
-            %i.icon-search
-              Search
+          .btn-group
+            %a.btn.btn-small.play-btn
+              %i.icon-play
+                Abspielen
+          .btn-group
+            %a.btn.btn-small.search-btn
+              %i.icon-search
+                Infos
+          .btn-group
+            %a#playlist-container.btn.btn-small.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %i.icon-bookmark
+                Hinzufügen
+            %ul.dropdown-menu
+              - @playlists.each do |playlist|
+                %li
+                  %a.playlist-button{"data-playlistid" => playlist.id} #{playlist.name}
+
+  

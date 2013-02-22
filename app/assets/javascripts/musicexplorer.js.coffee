@@ -5,7 +5,8 @@
 $(document).ready ->
   $.getJSON("/musicexplorer/search?filter=", {}, (json, resp) -> 
         fillList json
-      );
+  );
+
   $("#jquery_jplayer_1").jPlayer
     ready: ->
       $(this).jPlayer "setMedia",
@@ -16,7 +17,7 @@ $(document).ready ->
   $("#search").keyup -> 
     $.getJSON("/musicexplorer/search?filter=" + $("#search").val(), {}, (json, resp) -> 
         fillList json
-      );
+    );
 
 fillList = (jsonString) ->
   $("#table-content").empty()
@@ -35,3 +36,12 @@ fillList = (jsonString) ->
             $("#song-description").text song.title
           newEntry.find(".row-buttons").find(".search-btn").attr("href", "/songs/ #{song.id}")
           $("#table-content").append(newEntry)
+          newEntry.find(".row-buttons").find(".playlist-button").on "click", ->
+            addSongToPlaylist $(this).data("playlistid"), song.id
+
+addSongToPlaylist = (playlistid, songid) ->
+  $.getJSON("/playlists/#{playlistid}/new?songid=#{songid}", {}, (json, resp) ->
+    alert "success"
+  );
+
+

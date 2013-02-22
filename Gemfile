@@ -6,7 +6,7 @@ gem 'rb-readline'
 gem 'haml'
 gem 'font-awesome-sass-rails'
 gem 'paperclip'
-gem 'ruby-mp3info'
+gem 'ruby-mp3info' #mp3-tags
 gem 'better_errors'
 
 # Bundle edge Rails instead:

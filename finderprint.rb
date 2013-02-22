@@ -10,7 +10,7 @@ def fingerprint_and_duration filename
 	end
 end
 
-duration, fingerprint = fingerprint_and_duration "/home/fabian/Musik/Zupfgeigenhansel - Nehmt Abschied Brüder.mp3"
+duration, fingerprint = fingerprint_and_duration "/home/daniel/Musik/Phil collins - Two worlds.mp3"
 
 puts duration
 puts fingerprint

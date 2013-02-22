@@ -1,5 +1,8 @@
 Ecotunes::Application.routes.draw do
   
+  resources :playlists
+
+
   resources :artists
   resources :albums
   resources :songs
