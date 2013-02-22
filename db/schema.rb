@@ -67,14 +67,14 @@ ActiveRecord::Schema.define(:version => 20130222190613) do
     t.float    "finger_print"
     t.integer  "bitrate"
     t.string   "channel_mode"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.integer  "sample_rate"
     t.integer  "mpeg_version"
-    t.string   "attach_file_name"
-    t.string   "attach_content_type"
-    t.integer  "attach_file_size"
-    t.datetime "attach_updated_at"
+    t.string   "song_file_name"
+    t.string   "song_content_type"
+    t.integer  "song_file_size"
+    t.datetime "song_updated_at"
   end
 
 end

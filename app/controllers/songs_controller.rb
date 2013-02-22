@@ -9,7 +9,7 @@ class SongsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @songs }
+      format.json { render json: @songs.map{|song| song.to_jq_upload } }
     end
   end
 
@@ -46,75 +46,14 @@ class SongsController < ApplicationController
   def create
     @song = Song.new(params[:song])
 
-    if @song.attach != nil 
-      tag = {}
-      if @song.save
-        Mp3Info.open( @song.attach.path ) do |mp3|
-          @song.length = mp3.length
-          @song.bitrate = mp3.bitrate
-          @song.channel_mode = mp3.channel_mode
-          @song.sample_rate = mp3.samplerate
-          @song.mpeg_version = mp3.mpeg_version
-          
-          if mp3.tag != {}
-            tag = mp3.tag
-          elsif mp3.tag2 != {}
-            tag = mp3.tag2
-          end
-        end
-
-        #Set tags
-        if tag != {}
-
-          @song.title = tag.title
-          #needed in album and artist
-          artist = nil
-          
-          artist = Artist.find_by_name(tag.artist)
-          if artist != nil
-            @song.artists << artist
-          else
-            artist = Artist.create
-            artist.name = tag.artist
-            @song.artists << artist
-            artist.save
-          end
-
-          album = Album.find_by_name(tag.album)
-          if album != nil
-            @song.albums << album
-          else
-            album = Album.create
-            album.name = tag.album
-            album.artists << artist
-            @song.albums << album
-            album.save
-          end
-
-          if album != nil
-              if artist.albums.find_by_id(album.id) == nil
-                artist.albums << new_album
-              end
-          end
-
-            #only tracknum, if album exists
-            if tag.tracknum != nil
-              #TODO wie behandeln wir das? Man brauch wohl ne neue Klasse... ein Song hat pro Album halt eine neue Tracknr
-            end
-
-            @song.released = tag.year
-
-          if tag.genre_s != nil
-          end
-
-        end
-      end
-    end   
-
     respond_to do |format|
       if @song.save
-        format.html { redirect_to @song, notice: 'Song was successfully created.' }
-        format.json { render json: @song, status: :created, location: @song }
+        format.html {
+          render :json => [@song.to_jq_upload].to_json,
+          :content_type => 'text/html',
+          :layout => false
+        }
+        format.json { render json: [@song.to_jq_upload].to_json, status: :created, location: @song }
       else
         format.html { render action: "new" }
         format.json { render json: @song.errors, status: :unprocessable_entity }
