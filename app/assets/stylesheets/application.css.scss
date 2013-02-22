@@ -9,13 +9,18 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_font-awesome
+ *= require _font-awesome
  *= require_tree .
  */
 
 
 html, body {
   height: 100%;
+}
+
+#title {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 #wrap {

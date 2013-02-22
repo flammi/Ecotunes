@@ -8,6 +8,7 @@
         %th Time
         %th Album
     %tbody#table-content
+          
 
 %table{:style => "visibility:hidden"}
   %tbody#row-entry-container
@@ -16,3 +17,10 @@
       %td.row-artist
       %td.row-time
       %td.row-album 
+      %td.row-buttons
+        %a.btn.btn-small.play-btn
+          %i.icon-play
+            Play
+        %a.btn.btn-small.search-btn
+          %i.icon-search
+            Search

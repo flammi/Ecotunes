@@ -29,4 +29,6 @@ fillList = (jsonString) ->
           newEntry.find(".row-artist").text(artist.name)
           newEntry.find(".row-time").text(song.duration)
           newEntry.find(".row-album").text(album.name)
+          newEntry.find(".row-buttons").find(".search-btn")
+          newEntry.find(".row-buttons").find(".play-btn")
           $("#table-content").append(newEntry)
