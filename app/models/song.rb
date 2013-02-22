@@ -19,7 +19,8 @@ class Song < ActiveRecord::Base
      :duration => self.length,
      :albums => self.albums,
      :artists => self.artists,
-     :file_name => self.attach_file_name}
+     :file_name => self.attach_file_name,
+     :id => self.id}
   end
 
 end

@@ -22,3 +22,16 @@ ul.col {
 .btn-group {
   margin-bottom: 10px;
 }
+
+table{
+  tr .button-container{
+    visibility: hidden;
+  }
+  tr:hover .button-container{
+    visibility: visible;
+  }
+
+  td .button-container{
+    float: right;
+  }
+}
