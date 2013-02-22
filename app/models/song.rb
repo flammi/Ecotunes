@@ -18,7 +18,8 @@ class Song < ActiveRecord::Base
     {:title => self.title,
      :duration => self.length,
      :albums => self.albums,
-     :artists => self.artists}
+     :artists => self.artists,
+     :file_name => self.attach_file_name}
   end
 
 end
