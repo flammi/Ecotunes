@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20130222190613) do
     t.string   "path"
     t.datetime "released"
     t.integer  "genre_id"
-    t.float    "finger_print"
+    t.string   "finger_print"
     t.integer  "bitrate"
     t.string   "channel_mode"
     t.datetime "created_at",        :null => false

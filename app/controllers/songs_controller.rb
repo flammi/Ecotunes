@@ -19,7 +19,7 @@ class SongsController < ApplicationController
   def show
     @song = Song.find(params[:id])
     @duration = seconds_to_duration(@song.length) 
-
+    @finger_print = "#{@song.finger_print[0..15]}..."
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @song }
@@ -49,13 +49,13 @@ class SongsController < ApplicationController
 
     if @song.song != nil
       tag = {}
-      #duration, fingerprint = fingerprint_and_duration "#{@song.song.path}"
-      #@song.fingerprint = fingerprint
-      #@song.length = duration
 
       if @song.save
+        duration, fingerprint = fingerprint_and_duration "#{@song.song.path}"
+        @song.finger_print = fingerprint
+        @song.length = duration
         Mp3Info.open( @song.song.path ) do |mp3|
-          @song.length = mp3.length #fingerprint has same value
+          #@song.length = mp3.length #fingerprint has same value
           @song.bitrate = mp3.bitrate
           @song.channel_mode = mp3.channel_mode
           @song.sample_rate = mp3.samplerate
