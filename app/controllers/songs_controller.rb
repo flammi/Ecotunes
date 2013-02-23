@@ -49,6 +49,7 @@ class SongsController < ApplicationController
 
     if @song.song != nil
       tag = {}
+      @song.title = @song.song_file_name
 
       if @song.save
         duration, fingerprint = fingerprint_and_duration "#{@song.song.path}"
@@ -70,8 +71,10 @@ class SongsController < ApplicationController
 
         #Set tags
         if tag != {}
+          if tag.title != nil
+            @song.title = tag.title
+          end
 
-          @song.title = tag.title
           #needed in album and artist
           artist = nil
           
@@ -111,7 +114,6 @@ class SongsController < ApplicationController
 
           if tag.genre_s != nil
           end
-
         end
       end
     end   

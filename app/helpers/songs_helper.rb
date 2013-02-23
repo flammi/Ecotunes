@@ -6,7 +6,7 @@ module SongsHelper
 
   def fingerprint_and_duration filename
     if filename != nil
-      IO.popen(["fpcalc", Rails.root.join("public", "system", "songs", "attaches", filename).to_s]) do |io|
+      IO.popen(["fpcalc", filename]) do |io|
         output = io.read
         if output != nil
           output_as_array = output.split "\n"
