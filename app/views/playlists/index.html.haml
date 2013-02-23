@@ -22,7 +22,7 @@
                   %tr
                   %td.row-track #{song.title}
                   - if song.artist != nil
-                    %td.row-artist
+                    %td.row-artist #{song.artist.name}
                   %td.row-time #{song.length}
                   - if song.album != nil
                     %td.row-album #{song.album.name}
@@ -33,7 +33,7 @@
                           %i.icon-play
                             Abspielen
                       .btn-group
-                        %a.btn.btn-small.search-btn
+                        %a.btn.btn-small.search-btn{:href => "/songs/#{song.id}"}
                           %i.icon-search
                             Infos
                       .btn-group

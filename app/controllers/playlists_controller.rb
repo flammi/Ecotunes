@@ -23,7 +23,10 @@ end
 
 def removesong
     @playlist = Playlist.find(params[:playlistid])
-    @playlist.songs.destroy(params[:songid]).first
+    index = @playlist.songs.index(params[:songid])
+    if index != nil
+      @playlist.songs.delete_at(index)
+    end
     if @playlist.save
       render :json => { }
     else

@@ -3,6 +3,9 @@
     #{@song.artist.name} - #{@song.title}
   - else
     #{@song.title} 
+%h3 
+  - if @song.album != nil
+    #{@song.album.name}
 %h4
   .basic_info
     Allgemeine Informationen:
