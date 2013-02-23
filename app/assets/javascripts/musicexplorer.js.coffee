@@ -7,10 +7,9 @@ $(document).ready ->
   myPlaylist = new jPlayerPlaylist(
     jPlayer: "#jquery_jplayer_1" 
     cssSelectorAncestor: "#jp_container_1"
-  , [
-  ],
+  , [],
     playlistOptions:
-      enableRemoveControls: false
+      enableRemoveControls: true
     swfPath: "../js"
     supplied: "webmv, ogv, m4v, oga, mp3"
     wmode: "window"

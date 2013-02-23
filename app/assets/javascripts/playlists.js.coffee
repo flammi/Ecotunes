@@ -5,6 +5,18 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready ->
+
+  myPlaylist = new jPlayerPlaylist(
+    jPlayer: "#jquery_jplayer_1" 
+    cssSelectorAncestor: "#jp_container_1"
+  , [],
+    playlistOptions:
+      enableRemoveControls: true
+    swfPath: "../js"
+    supplied: "webmv, ogv, m4v, oga, mp3"
+    wmode: "window"
+  )
+  
   $(".play-btn").on "click", ->
     $("#jquery_jplayer_1").jPlayer "setMedia", {mp3: "http://localhost:3000" + $(this).data("path")}
     $("#jquery_jplayer_1").jPlayer "play"
