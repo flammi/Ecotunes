@@ -2,6 +2,7 @@ require "rubygems"
 require "mp3info"
 
 class SongsController < ApplicationController
+    include SongsHelper
   # GET /songs
   # GET /songs.json
   def index
@@ -17,7 +18,7 @@ class SongsController < ApplicationController
   # GET /songs/1.json
   def show
     @song = Song.find(params[:id])
-    @duration = view_context.seconds_to_duration(@song.length) 
+    @duration = seconds_to_duration(@song.length) 
 
     respond_to do |format|
       format.html # show.html.erb
@@ -46,16 +47,20 @@ class SongsController < ApplicationController
   def create
     @song = Song.new(params[:song])
 
-    if @song.song != nil 
+    if @song.song != nil
       tag = {}
+      #duration, fingerprint = fingerprint_and_duration "#{@song.song.path}"
+      #@song.fingerprint = fingerprint
+      #@song.length = duration
+
       if @song.save
         Mp3Info.open( @song.song.path ) do |mp3|
-          @song.length = mp3.length
+          @song.length = mp3.length #fingerprint has same value
           @song.bitrate = mp3.bitrate
           @song.channel_mode = mp3.channel_mode
           @song.sample_rate = mp3.samplerate
           @song.mpeg_version = mp3.mpeg_version
-          
+
           if mp3.tag != {}
             tag = mp3.tag
           elsif mp3.tag2 != {}
@@ -93,7 +98,7 @@ class SongsController < ApplicationController
 
           if album != nil
               if artist.albums.find_by_id(album.id) == nil
-                artist.albums << new_album
+                artist.albums << album
               end
           end
 
