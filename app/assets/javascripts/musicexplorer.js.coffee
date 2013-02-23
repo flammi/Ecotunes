@@ -31,7 +31,7 @@ fillList = (jsonString) ->
           newEntry.find(".row-time").text(song.duration)
           newEntry.find(".row-album").text(album.name)
           newEntry.find(".row-buttons").find(".play-btn").on "click", ->
-            $("#jquery_jplayer_1").jPlayer "setMedia", {mp3: "http://localhost:3000/system/songs/attaches/" + song.file_name}
+            $("#jquery_jplayer_1").jPlayer "setMedia", {mp3: "http://localhost:3000#{song.url}"}
             $("#jquery_jplayer_1").jPlayer "play"
             $("#song-description").text song.title
           newEntry.find(".row-buttons").find(".search-btn").attr("href", "/songs/ #{song.id}")

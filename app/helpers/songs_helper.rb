@@ -4,9 +4,9 @@ module SongsHelper
     Time.at(seconds).utc.strftime("%M:%S min")
   end
 
-  def fingerprint_and_duration filename
-    if filename != nil
-      IO.popen(["fpcalc", filename]) do |io|
+  def fingerprint_and_duration filepath
+    if filepath != nil
+      IO.popen(["fpcalc", filepath]) do |io|
         output = io.read
         if output != nil
           output_as_array = output.split "\n"

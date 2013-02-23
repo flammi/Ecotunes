@@ -5,7 +5,7 @@ class Song < ActiveRecord::Base
   has_and_belongs_to_many :playlists
   belongs_to :genre
   has_attached_file :song,
-    :url => "/system/:class/:attachment/:basename.:extension"
+    :url => "/system/:attachment/:basename.:extension"
 
 include Rails.application.routes.url_helpers
 
@@ -15,7 +15,8 @@ include Rails.application.routes.url_helpers
      :albums => self.albums,
      :artists => self.artists,
      :file_name => self.song_file_name,
-     :id => self.id}
+     :id => self.id,
+     :url => self.song.url}
   end
 
   def to_jq_upload
