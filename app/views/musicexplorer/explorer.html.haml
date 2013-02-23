@@ -26,7 +26,10 @@
           .btn-group
             %a.btn.btn-small.play-btn
               %i.icon-play
-                Abspielen
+                Wiedergabe
+            %a.btn.btn-small.addtoplay-btn
+              %i.icon-search
+                An aktuelle Wiedergabe
           .btn-group
             %a.btn.btn-small.search-btn
               %i.icon-search
@@ -39,5 +42,9 @@
               - @playlists.each do |playlist|
                 %li
                   %a.playlist-button{"data-playlistid" => playlist.id} #{playlist.name}
+                %li.divider
+                %li
+                  %a.new-playlist-button
+                    Neue Playlist anlegen
 
   
