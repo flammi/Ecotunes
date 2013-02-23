@@ -41,3 +41,8 @@ html, body {
   background-color: #000;
   margin: 0px auto;
 }
+
+.jp-playlist #addscrollpane {
+  max-height: 150px;
+  overflow: auto;
+}
