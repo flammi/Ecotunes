@@ -6,6 +6,8 @@ class CreateSongs < ActiveRecord::Migration
       t.string :path
       t.datetime :released
       t.integer :genre_id
+      t.integer :album_id
+      t.integer :artist_id
       t.string :finger_print
       t.integer :bitrate 
       t.string :channel_mode #e.g. Stereo

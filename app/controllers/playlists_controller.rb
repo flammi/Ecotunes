@@ -21,6 +21,16 @@ def newsong
     end
 end
 
+def removesong
+    @playlist = Playlist.find(params[:playlistid])
+    @playlist.songs.destroy(params[:songid]).first
+    if @playlist.save
+      render :json => { }
+    else
+      render :json => { }, :status => 500
+    end
+end
+
   # GET /playlists/1
   # GET /playlists/1.json
   def show

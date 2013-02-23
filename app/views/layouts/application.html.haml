@@ -5,6 +5,7 @@
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
+    = yield :header
   %body
     #wrap
       .navbar.navbar-static
@@ -17,7 +18,7 @@
               %i.icon-music.icon
             %ul.nav
               %li= link_to "Musikdatenbank bearbeiten", musicupload_path
-              %li= link_to "Playlist generieren", playlist_path
+              %li= link_to "Playlists", playlists_path
               %li= link_to "Informationen", nil
             %form.navbar-search.pull-right
               %input#search.search-query{:placeholder => "Musik suchen", :type => "text"}

@@ -1,3 +1,7 @@
+<%- content_for(:header) do -%>
+<%= javascript_include_tag :songs -%>
+<%= javascript_include_tag :musicexplorer -%>
+<%- end -%>
 <div class="container">
   <h2>Musik bearbeiten</h2>
   <%= form_for Song.new, :html => { :multipart => true, :id => "fileupload"  } do |f| %>

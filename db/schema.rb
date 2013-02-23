@@ -16,29 +16,15 @@ ActiveRecord::Schema.define(:version => 20130222190613) do
   create_table "albums", :force => true do |t|
     t.string   "name"
     t.datetime "release"
+    t.integer  "artist"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "albums_artists", :id => false, :force => true do |t|
-    t.integer "album_id"
-    t.integer "artist_id"
-  end
-
-  create_table "albums_songs", :id => false, :force => true do |t|
-    t.integer "song_id"
-    t.integer "album_id"
   end
 
   create_table "artists", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "artists_songs", :id => false, :force => true do |t|
-    t.integer "song_id"
-    t.integer "artist_id"
   end
 
   create_table "genres", :force => true do |t|
@@ -64,6 +50,8 @@ ActiveRecord::Schema.define(:version => 20130222190613) do
     t.string   "path"
     t.datetime "released"
     t.integer  "genre_id"
+    t.integer  "album_id"
+    t.integer  "artist_id"
     t.string   "finger_print"
     t.integer  "bitrate"
     t.string   "channel_mode"

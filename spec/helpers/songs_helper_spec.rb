@@ -10,6 +10,17 @@ require 'spec_helper'
 #     end
 #   end
 # end
+
 describe SongsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    path = Rails.root.join('spec', 'helpers', 'collins.mp3').to_s # file to check
+    @duration1, @fingerprint1 = helper.fingerprint_and_duration path
+    @duration2, @fingerprint2 = helper.fingerprint_and_duration path
+  end
+  describe "check fingerprint two times" do
+    it "should have the same fingerprint" do
+      @duration1 == @duration2
+      @fingerprint1 == @fingerprint2
+    end
+  end
 end

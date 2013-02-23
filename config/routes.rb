@@ -15,8 +15,9 @@ Ecotunes::Application.routes.draw do
   get "musicexplorer/stream_song"
 
   post "playlists/newsong", :as => :new_song
+  post "playlists/removesong", :as => :remove_song
+
   get "songs/new", :as => :musicupload
-  get "playlist_generator/Playlist", :as => :playlist
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

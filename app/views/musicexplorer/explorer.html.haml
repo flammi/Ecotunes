@@ -1,6 +1,10 @@
+- content_for :header do
+  = javascript_include_tag 'musicexplorer'
+  = javascript_include_tag 'mp3player'
 .musicpanel
   %table.table.table-hover.music-table
-    %caption Songs
+    %caption
+      %h2 Vorhandene Songs
     %thead
       %tr
         %th Track

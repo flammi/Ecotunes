@@ -9,7 +9,7 @@ gem 'paperclip'
 gem 'ruby-mp3info' #mp3-tags
 gem 'better_errors'
 gem 'jquery-fileupload-rails'
-
+gem 'seed_dump'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

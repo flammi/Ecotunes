@@ -1,5 +1,8 @@
 %h2 
-  #{@song.artists.first.name} - #{@song.title} 
+  - if @song.artist != nil
+    #{@song.artist.name} - #{@song.title}
+  - else
+    #{@song.title} 
 %h4
   .basic_info
     Allgemeine Informationen:

@@ -1,0 +1,43 @@
+- content_for :header do
+  = javascript_include_tag 'mp3player'
+  = javascript_include_tag 'playlists'
+.musicpanel
+  #accordion2.accordion{:active=>false, :collapsible=>true}
+    - @playlists.each do |playlist|
+      .accordion-group
+        .accordion-heading
+          %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapse#{playlist.id}"}
+            #{playlist.name}
+        .accordion-body.collapse.in{:id=>"collapse#{playlist.id}"}
+          .accordion-inner
+            %table.table.table-hover.music-table
+              %thead
+                %tr
+                  %th Track
+                  %th Artist
+                  %th Time
+                  %th Album
+              %tbody#table-content
+                - playlist.songs.each do |song|
+                  %tr
+                  %td.row-track #{song.title}
+                  - if song.artist != nil
+                    %td.row-artist
+                  %td.row-time #{song.length}
+                  - if song.album != nil
+                    %td.row-album #{song.album.name}
+                  %td.row-buttons
+                    .button-container
+                      .btn-group
+                        %a.btn.btn-small.play-btn{"data-songtitle" => song.title, "data-path" => song.song.url}
+                          %i.icon-play
+                            Abspielen
+                      .btn-group
+                        %a.btn.btn-small.search-btn
+                          %i.icon-search
+                            Infos
+                      .btn-group
+                        %a.btn.btn-small.remove-btn{"data-songid" => song.id, "data-playlistid" => playlist.id}
+                          %i.icon-bookmark
+                            Entfernen
+    

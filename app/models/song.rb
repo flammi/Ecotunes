@@ -1,7 +1,7 @@
 class Song < ActiveRecord::Base
-  attr_accessible :song, :artists, :genre_id, :length, :path, :released, :title, :albums, :genre, :finger_print, :bitrate, :channel_mode, :sample_rate, :mpeg_version, :playlists
-  has_and_belongs_to_many :artists
-  has_and_belongs_to_many :albums
+  attr_accessible :song, :artist_id, :album_id, :artist, :genre_id, :length, :path, :released, :title, :album, :genre, :finger_print, :bitrate, :channel_mode, :sample_rate, :mpeg_version, :playlists
+  belongs_to :artist
+  belongs_to :album
   has_and_belongs_to_many :playlists
   belongs_to :genre
   has_attached_file :song,
@@ -12,8 +12,8 @@ include Rails.application.routes.url_helpers
   def as_json(options={})
     {:title => self.title,
      :duration => self.length,
-     :albums => self.albums,
-     :artists => self.artists,
+     :album => self.album,
+     :artist => self.artist,
      :file_name => self.song_file_name,
      :id => self.id,
      :url => self.song.url}

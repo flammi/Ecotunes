@@ -68,55 +68,49 @@ class SongsController < ApplicationController
             tag = mp3.tag2
           end
         end
+      end
 
-        #Set tags
-        if tag != {}
-          if tag.title != nil
-            @song.title = tag.title
-          end
+      #Set tags
+      if tag != {}
+        if tag.title != nil
+          @song.title = tag.title
+        end
 
-          #needed in album and artist
-          artist = nil
-          
-          artist = Artist.find_by_name(tag.artist)
-          if artist != nil
-            @song.artists << artist
-          else
-            artist = Artist.create
-            artist.name = tag.artist
-            @song.artists << artist
-            artist.save
-          end
+        #needed in album and artist
+        
+        artist = Artist.find_by_name(tag.artist)
+        if artist == nil
+          artist = Artist.create
+          artist.name = tag.artist
+          @song.artist = artist
+        end
+        artist.songs << @song
 
-          album = Album.find_by_name(tag.album)
-          if album != nil
-            @song.albums << album
-          else
-            album = Album.create
-            album.name = tag.album
-            album.artists << artist
-            @song.albums << album
-            album.save
-          end
+        album = Album.find_by_name(tag.album)
+        
+        if album == nil
+          album = Album.create
+          album.name = tag.album
+          album.artist = artist
+          artist.albums << album
+        end
+        @song.album == album
+        album.songs << @song
 
-          if album != nil
-              if artist.albums.find_by_id(album.id) == nil
-                artist.albums << album
-              end
-          end
+        #only tracknum, if album exists
+        if tag.tracknum != nil
+          #TODO wie behandeln wir das? Man brauch wohl ne neue Klasse... ein Son
+        end
 
-            #only tracknum, if album exists
-            if tag.tracknum != nil
-              #TODO wie behandeln wir das? Man brauch wohl ne neue Klasse... ein Son
-            end
+        @song.released = tag.year
 
-            @song.released = tag.year
-
-          if tag.genre_s != nil
-          end
+        if tag.genre_s != nil
         end
       end
     end   
+
+    artist.save
+    album.save
 
     respond_to do |format|
       if @song.save
