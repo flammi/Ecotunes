@@ -28,7 +28,11 @@ require 'lastfm'
     lastfm = Lastfm.new(apikey, secret)
     #token = lastfm.auth.get_token
     #lastfm.session = lastfm.auth.get_session(:token => token)['key']
-    puts lastfm.album.get_info(artist_name, album_name)
+    begin
+      lastfm.album.get_info(artist_name, album_name)
+    rescue Lastfm::ApiError
+      nil
+    end
   end
 
 
