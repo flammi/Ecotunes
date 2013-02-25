@@ -6,7 +6,7 @@ class Song < ActiveRecord::Base
   belongs_to :genre
 
   has_attached_file :song,
-    :url => Preferences.mp3_folder + "/:basename.:extension",
+    :url => "/:basename.:extension",
     :path => Preferences.mp3_folder + "/:basename.:extension"
 include Rails.application.routes.url_helpers
 
@@ -17,9 +17,10 @@ include Rails.application.routes.url_helpers
      :artist => self.artist,
      :file_name => self.song_file_name,
      :id => self.id,
-     :url => self.song.url}
+     :url => Preferences.mp3_url + self.song.url}
   end
 
+  
   def to_jq_upload
     {
       "name" => read_attribute(:song_file_name),

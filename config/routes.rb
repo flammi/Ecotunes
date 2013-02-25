@@ -15,7 +15,6 @@ Ecotunes::Application.routes.draw do
   root :to => "musicexplorer#explorer"
 
   get "musicexplorer/search"
-  get "musicexplorer/stream_song"
 
   post "playlists/newsong", :as => :new_song
   post "playlists/removesong", :as => :remove_song

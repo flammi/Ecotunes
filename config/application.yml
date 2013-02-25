@@ -1,7 +1,7 @@
 # config/application.yml
 defaults: &defaults
   mp3_folder: <%= "#{Rails.root}/public/music/songs" %>
-  mp3_image_folder: <%= "#{Rails.root}/public/music/images" %>
+  mp3_url: "/music/songs"
   mp3_unsorted_folder : <%= "#{Rails.root}/public/music/unsorted_songs" %>
   apikey: "352e35485dead90ec0179be83979e561"
   secret: "d3044af5b2569b22b024a177d0cc555d"
