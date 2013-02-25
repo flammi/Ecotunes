@@ -2,6 +2,8 @@ Ecotunes::Application.routes.draw do
   
   match "management" => "management#management"
   get "management/duplicatecheck"
+  get "management/import"
+
 
   resources :playlists
   resources :artists

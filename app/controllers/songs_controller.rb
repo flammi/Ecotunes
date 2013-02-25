@@ -45,77 +45,9 @@ class SongsController < ApplicationController
   # POST /songs
   # POST /songs.json
   def create
-    @song = Song.new(params[:song])
-
-    if @song.song != nil
-      tag = {}
-      @song.title = @song.song_file_name
-
-      if @song.save
-        duration, fingerprint = fingerprint_and_duration "#{@song.song.path}"
-        @song.finger_print = fingerprint
-        @song.length = duration
-        Mp3Info.open( @song.song.path ) do |mp3|
-          #@song.length = mp3.length #fingerprint has same value
-          @song.bitrate = mp3.bitrate
-          @song.channel_mode = mp3.channel_mode
-          @song.sample_rate = mp3.samplerate
-          @song.mpeg_version = mp3.mpeg_version
-
-          if mp3.tag != {}
-            tag = mp3.tag
-          elsif mp3.tag2 != {}
-            tag = mp3.tag2
-          end
-        end
-      end
-
-      #Set tags
-      if tag != {}
-        if tag.title != nil
-          @song.title = tag.title
-        end
-
-        #needed in album and artist
-        
-        artist = Artist.find_by_name(tag.artist)
-        if artist == nil
-          artist = Artist.create
-          artist.name = tag.artist
-          @song.artist = artist
-        end
-        artist.songs << @song
-
-        album = Album.find_by_name(tag.album)
-        
-        if album == nil
-          album = Album.create
-          album.name = tag.album
-          album.artist = artist
-          artist.albums << album
-        end
-        @song.album == album
-        album.songs << @song
-
-        #only tracknum, if album exists
-        if tag.tracknum != nil
-          #TODO wie behandeln wir das? Man brauch wohl ne neue Klasse... ein Son
-        end
-
-        @song.released = tag.year
-
-        if tag.genre_s != nil
-        end
-      end
-    end   
-
-    artist.save
-    album.save
-
-    picture, description = get_album_info artist.name, album.name
-    if picture != nil
-      @song.image_path = picture
-    end
+    puts params[:song]
+    @song = Song.new params[:song]
+    create_song @song
 
     respond_to do |format|
       if @song.save
