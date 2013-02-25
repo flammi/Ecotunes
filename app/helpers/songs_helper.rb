@@ -26,9 +26,9 @@ require 'lastfm'
     apikey = "352e35485dead90ec0179be83979e561"
     secret = "d3044af5b2569b22b024a177d0cc555d"
     lastfm = Lastfm.new(apikey, secret)
-    token = lastfm.auth.get_token
-    lastfm.session = lastfm.auth.get_session(:token => token)['key']
-    lastfm.album.getInfo(artist_name, album_name)
+    #token = lastfm.auth.get_token
+    #lastfm.session = lastfm.auth.get_session(:token => token)['key']
+    puts lastfm.album.get_info(artist_name, album_name)
   end
 
 
