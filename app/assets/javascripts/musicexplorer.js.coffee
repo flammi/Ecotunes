@@ -54,6 +54,7 @@ fillList = (jsonString, myPlaylist) ->
             addSongToPlaylist $(this).data("playlistid"), song.id
 
 
+
 addSongToPlaylist = (playlistid, songid) ->
   $.post("/playlists/newsong", songid: "#{songid}", playlistid: "#{playlistid}"
     ).done((data) ->

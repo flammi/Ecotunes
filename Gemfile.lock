@@ -137,6 +137,7 @@ GEM
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
+    settingslogic (2.0.9)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -175,5 +176,6 @@ DEPENDENCIES
   ruby-mp3info
   sass-rails
   seed_dump
+  settingslogic
   sqlite3
   uglifier

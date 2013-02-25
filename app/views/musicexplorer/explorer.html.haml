@@ -43,9 +43,9 @@
                 %li
                   %a.playlist-button{"data-playlistid" => playlist.id} #{playlist.name}
                 %li.divider
-                %li
-                  %a.new-playlist-button
-                    Neue Playlist anlegen
+              %li
+                %a.new-playlist-button{:href => "/playlists/new"}
+                  Neue Playlist anlegen
 - content_for :footer do
   #player
     .jp-type-playlist
