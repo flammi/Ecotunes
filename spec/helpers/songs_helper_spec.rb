@@ -36,4 +36,11 @@ describe SongsHelper do
     end
   end
 
+  describe "check if connection to last.fm exists" do
+    it "shouldn't return an error" do
+      result = helper.get_album_info "Eminem", "Recovery"
+      result.should_not eq(nil)
+    end
+  end
+
 end
