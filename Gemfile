@@ -11,12 +11,13 @@ gem 'better_errors'
 gem 'jquery-fileupload-rails'
 gem 'seed_dump'
 gem 'settingslogic'
+gem 'lastfm'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
 	gem 'sqlite3'
-	gem 'rspec-rails'
+	gem 'rspec-rails', "2.12.2"
 end
 
 

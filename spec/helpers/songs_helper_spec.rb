@@ -1,5 +1,5 @@
 require 'spec_helper'
-
+require 'songs_helper'
 # Specs in this file have access to a helper object that includes
 # the SongsHelper. For example:
 #
@@ -19,8 +19,8 @@ describe SongsHelper do
   end
   describe "check fingerprint two times" do
     it "should have the same fingerprint" do
-      @duration1 == @duration2
-      @fingerprint1 == @fingerprint2
+      @duration1.should eq(@duration2)
+      @fingerprint1.should eq(@fingerprint2)
     end
   end
 end

@@ -1,6 +1,6 @@
 # config/application.yml
 defaults:
-  test?: false
+  hallo?: false
   
 development:
   <<: *defaults
