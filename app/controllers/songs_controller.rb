@@ -112,6 +112,11 @@ class SongsController < ApplicationController
     artist.save
     album.save
 
+    picture, description = get_album_info artist.name, album.name
+    if picture != nil
+      @song.image_path = picture
+    end
+
     respond_to do |format|
       if @song.save
         format.html {

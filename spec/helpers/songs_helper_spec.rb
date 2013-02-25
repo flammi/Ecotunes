@@ -36,12 +36,24 @@ describe SongsHelper do
     end
   end
 
-  describe "check if connection to last.fm exists" do
-    it "shouldn't return an error" do
-      expect {helper.get_album_info "Eminem", "Recovery"}.to_not raise_error(Lastfm::ApiError)
+  describe "check if exceptions are catched and result is shown" do
+    it "should return a not-nil object" do
+     picture, description = helper.get_album_info "Eminem", "Recovery"
+     picture.should_not eq (nil)
+     description.should_not eq (nil)
     end 
-    it "should return an error" do
-      expect {helper.get_album_info "snajdhskahdkjas", "wadjsjhdkasjkdsa"}.to raise_error(Lastfm::ApiError)
+    it "should return nil,nil object" do
+      picture, description = helper.get_album_info "snajdhskahdkjas", "wadjsjhdkasjkdsa"
+      picture.should eq (nil)
+      description.should eq (nil)
+    end
+  end
+
+  describe "check album data" do
+    it "should load image" do
+      picture, description = helper.get_album_info "Chris Brown", "Don't Wake Me Up"
+      pic = URI.parse(picture)
+      
     end
   end
 

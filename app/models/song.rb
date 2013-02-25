@@ -1,9 +1,10 @@
 class Song < ActiveRecord::Base
-  attr_accessible :song, :artist_id, :album_id, :artist, :genre_id, :length, :path, :released, :title, :album, :genre, :finger_print, :bitrate, :channel_mode, :sample_rate, :mpeg_version, :playlists
+  attr_accessible :song, :image_path, :artist_id, :album_id, :artist, :genre_id, :length, :path, :released, :title, :album, :genre, :finger_print, :bitrate, :channel_mode, :sample_rate, :mpeg_version, :playlists
   belongs_to :artist
   belongs_to :album
   has_and_belongs_to_many :playlists
   belongs_to :genre
+
   has_attached_file :song,
     :url => Preferences.mp3_folder + "/:basename.:extension",
     :path => Preferences.mp3_folder + "/:basename.:extension"

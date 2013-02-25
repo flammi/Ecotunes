@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20130222190613) do
     t.datetime "updated_at",        :null => false
     t.integer  "sample_rate"
     t.integer  "mpeg_version"
+    t.string   "image_path"
     t.string   "song_file_name"
     t.string   "song_content_type"
     t.integer  "song_file_size"
