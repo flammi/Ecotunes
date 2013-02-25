@@ -5,8 +5,8 @@ class Song < ActiveRecord::Base
   has_and_belongs_to_many :playlists
   belongs_to :genre
   has_attached_file :song,
-    :url => "/system/:attachment/:basename.:extension"
-
+    :url => Preferences.mp3_folder + "/:basename.:extension",
+    :path => Preferences.mp3_folder + "/:basename.:extension"
 include Rails.application.routes.url_helpers
 
   def as_json(options={})
