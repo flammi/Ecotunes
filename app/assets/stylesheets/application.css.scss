@@ -41,3 +41,8 @@ html, body {
   background-color: #000;
   margin: 0px auto;
 }
+
+.addscrollpane {
+max-height: 120px;
+overflow: auto;
+}
