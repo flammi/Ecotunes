@@ -27,23 +27,25 @@ require 'lastfm'
     lastfm = Lastfm.new(Preferences.apikey, Preferences.secret)
     #token = lastfm.auth.get_token
     #lastfm.session = lastfm.auth.get_session(:token => token)['key']
-    begin
-      result = lastfm.album.get_info(artist_name, album_name)
-      image = result["image"].last #best quality
-      description = result["wiki"]
-      description_result = nil
-      image_result = nil
-      if description != nil
-        description_result = description["summary"]
+    if artist_name and album_name
+      begin
+        result = lastfm.album.get_info(artist_name, album_name)
+        image = result["image"].last #best quality
+        description = result["wiki"]
+        description_result = nil
+        image_result = nil
+        if description != nil
+          description_result = description["summary"]
+        end
+        if image != nil
+          image_result = image['content']
+          puts image_result
+        end
+        return image_result, description_result 
+      rescue Lastfm::ApiError
       end
-      if image != nil
-        image_result = image['content']
-        puts image_result
-      end
-      return image_result, description_result 
-    rescue Lastfm::ApiError
-      return nil, nil
     end
+    return nil, nil
   end
 
 

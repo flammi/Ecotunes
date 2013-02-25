@@ -6,8 +6,11 @@
 %h3 
   - if @song.album != nil
     #{@song.album.name}
-%div
-  %img{:href = #{@song.image_path}}
+.album-image
+  - if @song.image_path
+    %img{:src => "#{@song.image_path}", :width => 200, :height => 200}
+  - else
+    = image_tag "imagenotfound.png", :height => 200, :width => 200
 %h4
   .basic_info
     Allgemeine Informationen:
