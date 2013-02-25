@@ -36,4 +36,13 @@ describe SongsHelper do
     end
   end
 
+  describe "check if connection to last.fm exists" do
+    it "shouldn't return an error" do
+      expect {helper.get_album_info "Eminem", "Recovery"}.to_not raise_error(Lastfm::ApiError)
+    end 
+    it "should return an error" do
+      expect {helper.get_album_info "snajdhskahdkjas", "wadjsjhdkasjkdsa"}.to raise_error(Lastfm::ApiError)
+    end
+  end
+
 end
