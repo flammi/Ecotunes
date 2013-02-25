@@ -24,20 +24,14 @@ html, body {
   margin-right: 10px;
 }
 
-#wrap {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin: 0 auto -120px;
-}
-
 #footer {
-  height: 60px;
+  position: fixed;
+  width: 100%;
+  background-color: black;
+  bottom: 0px;
 }
 
 #player {
-  width: 300px;
-  height: 30px;
   background-color: #000;
   margin: 0px auto;
 }
@@ -45,4 +39,8 @@ html, body {
 .addscrollpane {
 max-height: 120px;
 overflow: auto;
+}
+
+.jp-audio {
+  margin: 0px auto;
 }

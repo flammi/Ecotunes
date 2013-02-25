@@ -7,24 +7,24 @@
     = csrf_meta_tags
     = yield :header
   %body
-    #wrap
-      .navbar.navbar-static.navbar-inverse
-        .navbar-inner
-          .container
-            .brand
-              %i.icon-music.icon
-              %i#title
-                = link_to "EcoTunes", root_path
-              %i.icon-music.icon
-            %ul.nav
-              %li= link_to "Musikdatenbank bearbeiten", musicupload_path
-              %li= link_to "Management", management_path
-              %li= link_to "Playlists", playlists_path
-              %li= link_to "Informationen", nil
-            %form.navbar-search.pull-right
-              %input#search.search-query{:placeholder => "Musik suchen", :type => "text"}
-      .container
-        = yield
-    #footer
-      = yield :footer
+    .navbar.navbar-static.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          .brand
+            %i.icon-music.icon
+            %i#title
+              = link_to "EcoTunes", root_path
+            %i.icon-music.icon
+          %ul.nav
+            %li= link_to "Musikdatenbank bearbeiten", musicupload_path
+            %li= link_to "Management", management_path
+            %li= link_to "Playlists", playlists_path
+            %li= link_to "Informationen", nil
+          %form.navbar-search.pull-right
+            %input#search.search-query{:placeholder => "Musik suchen", :type => "text"}
+    .container
+      = yield
+    .div#footer
+      .container.muted.credit
+        = yield :footer
       
