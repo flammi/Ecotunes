@@ -13,14 +13,27 @@ require 'songs_helper'
 
 describe SongsHelper do
   before do
-    path = Rails.root.join('spec', 'helpers', 'collins.mp3').to_s # file to check
-    @duration1, @fingerprint1 = helper.fingerprint_and_duration path
-    @duration2, @fingerprint2 = helper.fingerprint_and_duration path
+    collins_path = Rails.root.join('spec', 'helpers', 'collins.mp3').to_s # file to check
+    eminem_path = Rails.root.join('spec', 'helpers', 'eminem.mp3').to_s
+
+    @duration1, @fingerprint1 = helper.fingerprint_and_duration collins_path
+    @duration2, @fingerprint2 = helper.fingerprint_and_duration collins_path
+    
+    @duration3, @fingerprint3 = helper.fingerprint_and_duration eminem_path
   end
+
   describe "check fingerprint two times" do
     it "should have the same fingerprint" do
       @duration1.should eq(@duration2)
       @fingerprint1.should eq(@fingerprint2)
     end
   end
+
+  describe "check the fingerprint of two different songs" do
+    it "should not have the same fingerprint" do
+      @duration1.should_not eq(@duration3)
+      @fingerprint1.should_not eq(@fingerprint3)
+    end
+  end
+
 end
