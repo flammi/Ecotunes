@@ -16,3 +16,11 @@
 //= require jquery_ujs
 //= require jquery-fileupload
 //= require_tree ./global
+
+jQuery(function() {
+    jQuery('#search').focus(function() {
+        jQuery(this).animate({ width: '236px'});
+    }).blur(function() {
+        jQuery(this).animate({ width: '100px'});
+    });
+});
