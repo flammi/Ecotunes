@@ -6,6 +6,8 @@
 %h3 
   - if @song.album != nil
     #{@song.album.name}
+%div
+  %img{:href = #{@song.image_path}}
 %h4
   .basic_info
     Allgemeine Informationen:
