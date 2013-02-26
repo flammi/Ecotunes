@@ -26,8 +26,9 @@
     .container#wrap
       = yield
     .div#footer
-      %a.btn.close#close-open.is-open
-        Close
-        %i.icon-chevron-down
-      .container.muted.credit
-        = yield :footer
+      -if content_for? :footer
+        %a.btn.close#close-open.is-open
+          Close
+          %i.icon-chevron-down
+        .container.muted.credit
+          = yield :footer
