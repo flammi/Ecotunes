@@ -46,7 +46,7 @@ fillList = (jsonString, myPlaylist) ->
               artist: song.artist
               free: true
               mp3: "http://localhost:3000#{song.url}"
-
+            alert song.url
           newEntry.find(".row-buttons").find(".search-btn").attr("href", "/songs/ #{song.id}")
           $("#table-content").append(newEntry)
           
