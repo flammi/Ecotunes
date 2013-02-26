@@ -28,4 +28,14 @@ class ManagementController < ApplicationController
     end
     return @items
   end
+
+  def retagging
+    sorted_path = Preferences.mp3_folder
+    @items = []
+    Dir.glob(sorted_path + "/*.mp3") do |file_name| 
+      #some awesome magic here
+      @items << file_name
+    end
+    return @items
+  end
 end
