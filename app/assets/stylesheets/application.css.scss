@@ -96,3 +96,9 @@ div.jp-playlist li {
 .jp-free-media {
   display: none !important;
 }
+
+a:hover {
+  background-color: transparent !important;
+  color: white !important;
+  text-decoration: none !important;
+}
