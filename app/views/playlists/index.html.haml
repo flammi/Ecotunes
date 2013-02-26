@@ -35,7 +35,7 @@
                   %td.row-buttons
                     .button-container
                       .btn-group
-                        %a.btn.btn-small.play-btn{"data-songtitle" => song.title, "data-path" => song.song.url}
+                        %a.btn.btn-small.play-btn{"data-songtitle" => song.title, "data-path" => Preferences.mp3_url + song.song.url}
                           %i.icon-play
                             Abspielen
                       .btn-group
