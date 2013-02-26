@@ -1,6 +1,12 @@
 - content_for :header do
   = javascript_include_tag 'mp3player'
   = javascript_include_tag 'playlists'
+%div
+  %h3 Playlists 
+  .div
+    %i.icon-headphones.icon-4x{:style => "float: left; width: 70px; height:50px;"}
+    %p In diesem Bereich werden alle angelegten Playlists angezeigt. Hier können Lieder aus den Playlisten entfernt werden oder angehört werden.
+    %p=link_to "Neue Playlist anlegen", "/playlists/new", class: "btn btn-inverse"
 .musicpanel
   #accordion2.accordion{:active=>false, :collapsible=>true}
     - @playlists.each do |playlist|
