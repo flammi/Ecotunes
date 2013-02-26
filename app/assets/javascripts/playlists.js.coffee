@@ -6,10 +6,15 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready ->
 
+ window.onbeforeunload = ->
+    localStorage.setItem "playlist", JSON.stringify myPlaylist.playlist
+    localStorage.setItem "currentSong", myPlaylist.current
+    
+  playlist = JSON.parse(localStorage.getItem "playlist")
   myPlaylist = new jPlayerPlaylist(
     jPlayer: "#jquery_jplayer_1" 
     cssSelectorAncestor: "#jp_container_1"
-  , [],
+  , playlist,
     playlistOptions:
       enableRemoveControls: true
     swfPath: "../js"
