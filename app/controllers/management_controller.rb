@@ -1,6 +1,6 @@
-
 class ManagementController < ApplicationController
   def management
+    @jobs = ImportJob.all
   end
   def duplicatecheck
     songs = Song.all
@@ -14,19 +14,9 @@ class ManagementController < ApplicationController
   end
 
   def import
-    unsorted_path = Preferences.mp3_unsorted_folder
-    sorted_path = Preferences.mp3_folder
-    @items = []
-    Dir.glob(unsorted_path + "/*.mp3") do |file_name|
-      temp_song = Song.new
-      temp_song.song = File.open(file_name)
-      create_song temp_song
-      if temp_song.save     
-        @items << file_name
-        File.delete(file_name)
-      end
-    end
-    return @items
+    job = ImportJob.new
+    job.load_unimported
+    job.save
   end
 
   def retagging

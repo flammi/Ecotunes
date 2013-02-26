@@ -11,6 +11,14 @@
     %i.icon-cloud-upload.icon-4x{:style => "float: left; width: 70px; height:50px;"}
     %p="Alle Songs aus dem unsorted-Ordner #{Preferences.mp3_unsorted_folder} importieren. Gleichzeitig wird der Fingerprint der einzelnen Lieder generiert und für weitere Verarbeitungen abgespeichert."
     %p{:style => "clear:both"}=link_to "Importieren", management_import_path, class: "btn"
+    %p
+      = "Laufende Jobs (#{@jobs.count}):"
+      %ul
+        - if @jobs.count != 0
+          - @jobs.each do |job|
+            %li= "Job mit #{job.filecount} Dateien"
+        - else
+          %li Keine Jobs vorhanden!
 
 %div
   %h3 Retagging

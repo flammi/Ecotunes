@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130226083937) do
+ActiveRecord::Schema.define(:version => 20130226100144) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -47,6 +47,15 @@ ActiveRecord::Schema.define(:version => 20130226083937) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "import_jobs", :force => true do |t|
+    t.integer  "filecount"
+    t.integer  "filecount_processed"
+    t.text     "files"
+    t.boolean  "picked"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "playlists", :force => true do |t|
