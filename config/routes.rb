@@ -1,5 +1,7 @@
 Ecotunes::Application.routes.draw do
   
+  get "collection" => "collection#collection"
+
   match "management" => "management#management"
   get "management/duplicatecheck"
   get "management/import"

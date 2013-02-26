@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20130226100144) do
     t.integer  "sample_rate"
     t.integer  "mpeg_version"
     t.string   "image_path"
+    t.string   "acoust_id"
     t.string   "song_file_name"
     t.string   "song_content_type"
     t.integer  "song_file_size"

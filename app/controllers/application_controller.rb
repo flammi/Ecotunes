@@ -1,3 +1,6 @@
+
+require 'net/http'
+
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
@@ -25,6 +28,8 @@ class ApplicationController < ActionController::Base
 
       if song.save
         duration, fingerprint = fingerprint_and_duration "#{song.song.path}"
+        #acoust_id, score = get_acoust_id duration, fingerprint
+        #puts "acoustid: #{acoust_id} score: #{score}"
         song.finger_print = fingerprint
         song.length = duration
         Mp3Info.open( song.song.path ) do |mp3|
@@ -89,6 +94,26 @@ class ApplicationController < ActionController::Base
       song.image_path = picture
     end
     return song
+  end
+
+  def get_acoust_id duration, fingerprint
+    result_score = 0
+    if fingerprint != nil && duration.to_i > 10
+      uri = URI.parse("http://api.acoustid.org/v2/lookup")
+      json_response =  Net::HTTP.post_form(uri, 
+        {"client" => Preferences.acoustid,
+          "duration" => duration,
+          "fingerprint" => fingerprint})
+      if json_response != nil 
+          result = JSON.parse(json_response.body)
+          if result["status"] != "error"
+            return result["results"][0]["score"], result["results"][0]["id"]
+          else
+            puts result
+          end
+      end
+    end
+    return nil
   end
 
   def get_album_info artist_name, album_name
