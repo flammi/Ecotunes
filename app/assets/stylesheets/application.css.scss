@@ -87,3 +87,8 @@ div.jp-playlist li {
 #wrap {
   padding-top: 45px;
 }
+
+/* Video height auf 0 setzen */
+#jquery_jplayer_1 {
+  height: 0px !important;
+}
