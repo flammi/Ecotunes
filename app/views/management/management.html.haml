@@ -1,14 +1,20 @@
 %div
-  %h3 Duplikatcheck
-  %p Bei einem Klick auf den Button unten werden alle Duplikate aus der Datenbank entfernt. Dabei werden bei gefunden Duplikaten diejenigen Elemente entfernt, die weniger Tag-Informationen besitzen.
-  =link_to "Duplikate entfernen", management_duplicatecheck_path, class: "btn"
+  %h3 Duplikatcheck 
+  .div
+    %i.icon-search.icon-4x{:style => "float: left; width: 70px; height:50px;"}
+    %p Bei einem Klick auf den Button unten werden alle Duplikate aus der Datenbank entfernt. Dabei werden bei gefunden Duplikaten diejenigen Elemente entfernt, die weniger Tag-Informationen besitzen.
+    %p{:style => "clear:both"}=link_to "Duplikate entfernen", management_duplicatecheck_path, class: "btn"
 
 %div
   %h3 Import
-  %p="Alle Songs aus dem unsorted-Ordner #{Preferences.mp3_unsorted_folder} importieren. Gleichzeitig wird der Fingerprint der einzelnen Lieder generiert und für weitere Verarbeitungen abgespeichert."
-  =link_to "Importieren", management_import_path, class: "btn"
+  .div
+    %i.icon-cloud-upload.icon-4x{:style => "float: left; width: 70px; height:50px;"}
+    %p="Alle Songs aus dem unsorted-Ordner #{Preferences.mp3_unsorted_folder} importieren. Gleichzeitig wird der Fingerprint der einzelnen Lieder generiert und für weitere Verarbeitungen abgespeichert."
+    %p{:style => "clear:both"}=link_to "Importieren", management_import_path, class: "btn"
 
 %div
   %h3 Retagging
-  %p="Alle Songs aus dem sorted-Ordner #{Preferences.mp3_folder} werden analysiert und gegebenenfalls mit neuen Tags versehen. Dabei wird der Fingerprint an AcousticID übertragen und mögliche Resultate verarbeitet"
-  =link_to "Retagging", management_retagging_path, class: "btn"
+  .div
+    %i.icon-tags.icon-4x{:style => "float: left; width: 70px; height:50px;"}
+    %p="Alle Songs aus dem sorted-Ordner #{Preferences.mp3_folder} werden analysiert und gegebenenfalls mit neuen Tags versehen. Dabei wird der Fingerprint an AcousticID übertragen und mögliche Resultate verarbeitet"
+    %p{:style => "clear:both"}=link_to "Retagging", management_retagging_path, class: "btn"
