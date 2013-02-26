@@ -43,10 +43,9 @@ fillList = (jsonString, myPlaylist) ->
           newEntry.find(".row-buttons").find(".addtoplay-btn").on "click", ->
             myPlaylist.add
               title: song.title
-              artist: song.artist
+              artist: song.artist.name
               free: true
               mp3: "http://localhost:3000#{song.url}"
-            alert song.url
           newEntry.find(".row-buttons").find(".search-btn").attr("href", "/songs/ #{song.id}")
           $("#table-content").append(newEntry)
           
