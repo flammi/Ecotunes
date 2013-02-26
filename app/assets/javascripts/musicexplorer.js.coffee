@@ -4,16 +4,25 @@
 
 $(document).ready ->
   
+  window.onbeforeunload = ->
+    localStorage.setItem "playlist", JSON.stringify myPlaylist.playlist
+    localStorage.setItem "current", myPlaylist.current
+    localStorage.setItem "time", $(".jp-current-time").html()
+    localStorage.setItem "playing", $('#jquery_jplayer_1').data().jPlayer.status.paused 
+
+  playlist = JSON.parse(localStorage.getItem "playlist")
   myPlaylist = new jPlayerPlaylist(
     jPlayer: "#jquery_jplayer_1" 
     cssSelectorAncestor: "#jp_container_1"
-  , [],
+  , playlist,
     playlistOptions:
       enableRemoveControls: true
     swfPath: "../js"
     supplied: "webmv, ogv, m4v, oga, mp3"
     wmode: "window"
   )
+  if localStorage.getItem("current")?
+    myPlaylist.select localStorage.getItem "current"
 
   $.getJSON("/musicexplorer/search?filter=" + $("#search").val(), {}, (json, resp) -> 
           fillList json, myPlaylist
@@ -46,6 +55,7 @@ fillList = (jsonString, myPlaylist) ->
               artist: song.artist.name
               free: true
               mp3: "http://localhost:3000#{song.url}"
+            
           newEntry.find(".row-buttons").find(".search-btn").attr("href", "/songs/ #{song.id}")
           $("#table-content").append(newEntry)
           
