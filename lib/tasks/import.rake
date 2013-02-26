@@ -11,7 +11,8 @@ task :import_music => :environment do
       job.save
       
       #Process the import
-      #job.process
+      job.process
+      job.destroy
     else
       puts "Nothing found"
       sleep 1

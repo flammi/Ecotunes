@@ -16,7 +16,7 @@
       %ul
         - if @jobs.count != 0
           - @jobs.each do |job|
-            %li= "Job mit #{job.filecount} Dateien"
+            %li= "Job mit #{job.filecount} Dateien (#{job.filecount_processed} verarbeitet)"
         - else
           %li Keine Jobs vorhanden!
 
