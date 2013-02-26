@@ -31,7 +31,7 @@ jQuery(function() {
         $('#close-open').append('<i class="icon-chevron-up"></i>');
 
         $('#player').slideUp("slow");
-      }else{
+      }else if ($('#close-open').hasClass("is-closed")){
         $('#close-open').removeClass("is-closed").addClass("is-open");
         $('#close-open').text(" Close ");
         $('#close-open').append('<i class="icon-chevron-down"></i>');
