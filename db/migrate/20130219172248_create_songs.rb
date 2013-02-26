@@ -15,6 +15,7 @@ class CreateSongs < ActiveRecord::Migration
       t.integer :sample_rate
       t.integer :mpeg_version
       t.string :image_path
+      t.string :acoust_id
     end
   end
 
