@@ -24,6 +24,11 @@
             %input#search.search-query{:placeholder => "Musik suchen", :type => "text"}
             .icon-search
     .container#wrap
+      - if flash.count != 0
+        .alert
+          %button.close{:type => "button", "data-dismiss" => "alert"} &times;
+          - flash.each do |k,v|
+            %p=v
       = yield
     .div#footer
       -if content_for? :footer

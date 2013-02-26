@@ -17,6 +17,8 @@ class ManagementController < ApplicationController
     job = ImportJob.new
     job.load_unimported
     job.save
+    flash[:notice] = "Import gestartet..."
+    redirect_to :action => "management"
   end
 
   def retagging

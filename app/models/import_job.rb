@@ -17,7 +17,7 @@ class ImportJob < ActiveRecord::Base
     end
 
     @items = []
-    Dir.glob(unsorted_path + "/*.mp3") do |file_name|
+    Dir.glob(unsorted_path + "/**/*.mp3") do |file_name|
       if not old_files.include? file_name
         @items << file_name
       end
@@ -33,14 +33,14 @@ class ImportJob < ActiveRecord::Base
     self.save
   end
 
-  def process
+  def process controll
     self.files.split("|").each do |file|
       temp_song = Song.new
       temp_song.song = File.open(file)
-      create_song temp_song
+      controll.create_song temp_song
       if temp_song.save     
         file_processed
-        File.delete(file_name)
+        File.delete(file)
       end
     end
   end
