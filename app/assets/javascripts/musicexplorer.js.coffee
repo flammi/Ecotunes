@@ -8,7 +8,7 @@ $(document).ready ->
     localStorage.setItem "playlist", JSON.stringify myPlaylist.playlist
     localStorage.setItem "current", myPlaylist.current
     localStorage.setItem "time", $(".jp-current-time").html()
-    localStorage.setItem "playing", $('#jquery_jplayer_1').data().jPlayer.status.paused 
+    localStorage.setItem "paused", $('#jquery_jplayer_1').data().jPlayer.status.paused 
 
   playlist = JSON.parse(localStorage.getItem "playlist")
   myPlaylist = new jPlayerPlaylist(
@@ -21,8 +21,24 @@ $(document).ready ->
     supplied: "webmv, ogv, m4v, oga, mp3"
     wmode: "window"
   )
-  if localStorage.getItem("current")?
-    myPlaylist.select localStorage.getItem "current"
+
+
+#  if localStorage.getItem("current")?
+#    myPlaylist.select localStorage.getItem "current"
+#    time = localStorage.getItem "current"
+#    if localStorage.getItem("paused") == "false"
+#      $("#jquery_jplayer_1").jPlayer
+#        ready: ->
+#          alert "hallo"
+#          $('#jquery_jplayer_1').jPlayer("play", time)
+#          alert time
+#    else 
+#      $("#jquery_jplayer_1").jPlayer
+#        ready: ->
+#          alert "alla"
+#          $('#jquery_jplayer_1').jPlayer("pause", time)
+#          alert time
+      
 
   $.getJSON("/musicexplorer/search?filter=" + $("#search").val(), {}, (json, resp) -> 
           fillList json, myPlaylist

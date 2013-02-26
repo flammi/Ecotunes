@@ -8,7 +8,9 @@ $(document).ready ->
 
  window.onbeforeunload = ->
     localStorage.setItem "playlist", JSON.stringify myPlaylist.playlist
-    localStorage.setItem "currentSong", myPlaylist.current
+    localStorage.setItem "current", myPlaylist.current
+    localStorage.setItem "time", $(".jp-current-time").html()
+    localStorage.setItem "playing", $('#jquery_jplayer_1').data().jPlayer.status.paused
     
   playlist = JSON.parse(localStorage.getItem "playlist")
   myPlaylist = new jPlayerPlaylist(
