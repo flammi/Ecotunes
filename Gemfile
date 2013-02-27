@@ -7,10 +7,10 @@ gem 'bootstrap-sass'
 gem 'rb-readline'
 gem 'haml'
 gem 'font-awesome-sass-rails'
-gem 'paperclip'
+gem 'paperclip', "3.4.1"
 gem 'ruby-mp3info' #mp3-tags
 gem 'better_errors'
-gem 'jquery-fileupload-rails'
+gem 'jquery-fileupload-rails', "0.3.0"
 gem 'seed_dump'
 gem 'settingslogic'
 gem 'lastfm'
