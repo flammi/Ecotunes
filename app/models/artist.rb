@@ -5,7 +5,8 @@ class Artist < ActiveRecord::Base
   accepts_nested_attributes_for :albums
 
   def as_json(options={})
-    {:name => self.name
+    {:name => self.name,
+     :id => self.id
     }
   end
 end
