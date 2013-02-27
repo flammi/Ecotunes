@@ -16,6 +16,7 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
     if @album.artist != nil
       @songs = get_songs_from_album  @album.artist.name, @album.name
+      @album_cover = get_album_cover @album.artist.name, @album.name
     end
     @songs = [] if @songs == nil
     respond_to do |format|

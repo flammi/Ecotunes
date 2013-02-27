@@ -1,17 +1,21 @@
 %p#notice= notice
+
+%h2
+  Artist:
+= @album.artist.name
 %h3
   Album:
 = @album.name
-%h3
-  Artist:
-= @album.artist.name
+.album-image
+- if @album_cover
+  %img{:src => "#{@album_cover}", :width => 200, :height => 200}
+- else
+  = image_tag "imagenotfound.png", :height => 200, :width => 200
 
 %h5 
   Lieder vom Album:
-  %ul
+  %ol
+    - @songs.each do |song|
+      %li #{song['name']}
 
-  - @songs.each do |song|
-    %li #{song['rank']} #{song['name']}
-= link_to 'Edit', edit_album_path(@album)
-|
-\#{link_to 'Back', albums_path}
+
