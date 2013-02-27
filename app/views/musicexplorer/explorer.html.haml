@@ -3,7 +3,7 @@
   = javascript_include_tag 'mp3player'
   = javascript_include_tag 'jscrollpane'
 .musicpanel
-  %table.table.table-hover.music-table
+  %table.table.table-hover.music-table#infinitescroll
     %caption
       %h2 Vorhandene Songs
     %thead
@@ -13,7 +13,8 @@
         %th Time
         %th Album
     %tbody#table-content
-          
+.navigation
+  %a{:href => "/musicexplorer/search?filter="}
 
 %table{:style => "visibility:hidden"}
   %tbody#row-entry-container

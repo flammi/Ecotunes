@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Song < ActiveRecord::Base
   attr_accessible :song, :image_path, :artist_id, :album_id, :artist, :genre_id, :length, :path, :released, :title, :album, :genre, :finger_print, :acoust_id, :bitrate, :channel_mode, :sample_rate, :mpeg_version, :playlists
   belongs_to :artist
@@ -8,6 +9,8 @@ class Song < ActiveRecord::Base
   has_attached_file :song,
     :url => "/:basename.:extension",
     :path => Preferences.mp3_folder + "/:basename.:extension"
+
+  before_create :replace_characters
 include Rails.application.routes.url_helpers
 
   def as_json(options={})
@@ -29,6 +32,76 @@ include Rails.application.routes.url_helpers
       "delete_url" => song_path(self),
       "delete_type" => "DELETE" 
     }
+  end
+
+  replace_characters_hash = {
+    'ä' => 'ae',
+    'ö' => 'oe',
+    'ü' => 'ue',
+
+    'ß' => 'ss',
+    '$' => 's',
+
+    '_' => ' ',
+
+    "'" => '',
+    "´" => '',
+    "`" => "",
+
+    "[" => "(",
+    "]" => ")",
+    "?" => "",
+    "!" => "",
+    '/' => "-",
+    '\\' => "-",
+
+    "featuring" => "ft",
+    " feat. " => " ft ",
+    " feat " => " ft ",
+    " ft. " => " ft ",
+    "." => "",
+    "," => "",    
+
+    'à' => 'a',
+    'á' => 'a',
+    'â' => 'a',
+    'ã' => 'a',
+
+    'ç' => 'c',
+
+    'è' => 'e',
+    'é' => 'e',
+    'ê' => 'e',
+    'ë' => 'e',
+
+    'ì' => 'i',
+    'í' => 'i',
+    'î' => 'i',
+    'ï' => 'i',
+
+    'ñ' => 'n',
+
+    'ò' => 'o',
+    'ó' => 'o',
+    'ô' => 'o',
+    'õ' => 'o',
+
+    'ù' => 'u',
+    'ú' => 'u',
+    'û' => 'u',
+
+    'ý' => 'y',
+    'ÿ' => 'y',
+
+    '$' => 's',
+    '+' => '&',
+  }
+
+  def replace_characters
+    extension = File.extname(song_file_name).downcase
+    name = self.song_file_name
+    replace_characters_hash.each{|k, v| name.gsub!(k,v)}
+    self.song.instance_write(:file_name, "#{name}#{extension}")
   end
 
 end
