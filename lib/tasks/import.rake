@@ -13,8 +13,14 @@ task :import_music => :environment do
       puts "Found. Importing #{job.filecount} files ..."
       
       #Process the import
-      job.process app_control
-      job.destroy
+      begin
+        job.process app_control
+        job.destroy
+      rescue Exception => e
+        puts "WARNING!!! - Exception!!!"
+        puts e.message
+        sleep 1
+      end
     else
       puts "Nothing found"
       sleep 1

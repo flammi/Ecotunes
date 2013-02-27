@@ -35,12 +35,17 @@ class ImportJob < ActiveRecord::Base
 
   def process controll
     self.files.split("|").each do |file|
+      begin
       temp_song = Song.new
       temp_song.song = File.open(file)
       controll.create_song temp_song
       if temp_song.save     
         file_processed
         File.delete(file)
+      end
+      rescue Exception => e
+        puts "Exception: #{e.message}"
+        puts "Skipping file #{file}..." 
       end
     end
   end
