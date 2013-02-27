@@ -130,14 +130,13 @@ class ApplicationController < ActionController::Base
   end
   
 
-  def get_album_and_songs artist_name, album_name
+  def get_songs_from_album artist_name, album_name
     result = get_album_infos artist_name, album_name
-    tracks = result['tracks']
-    song_titles = Array.new
-    tracks.each do |track|
-      song_titles << track['name']
+    if result != nil
+      tracks = result['tracks']['track']
+      return tracks.map {|track| {"rank" => track['rank'], "name" => track['name']}}
     end
-    return song_titles
+    return nil
   end
 
   def get_album_cover artist_name, album_name
