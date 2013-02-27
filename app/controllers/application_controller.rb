@@ -4,7 +4,8 @@ include ActionView::Helpers::OutputSafetyHelper
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
+  cache =  ActiveSupport::Cache::MemoryStore.new
+
   def fingerprint_and_duration filepath
     if filepath != nil
       IO.popen(["fpcalc", filepath]) do |io|
@@ -115,19 +116,15 @@ class ApplicationController < ActionController::Base
 
   def get_album_infos artist_name, album_name
     pair = Pair.new artist_name, album_name
-    if @album_info_cache == nil
-      puts "neuer hash angelegt"
-      @album_info_cache = Hash.new
-    end
-    if @album_info_cache.has_key?(pair)
+    if Rails.cache.exist?(pair)
       puts "value from cache"
-      return @album_info_cache[pair]
+      return Rails.cache.read(pair)
     end
     lastfm = Lastfm.new(Preferences.apikey, Preferences.secret)
      if artist_name and album_name
       begin
         result = lastfm.album.get_info(artist_name, album_name)
-        @album_info_cache[pair] = result
+        Rails.cache.write(pair, result)
         puts "added in cache"
         return result
       rescue Lastfm::ApiError

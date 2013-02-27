@@ -24,7 +24,10 @@ class Song < ActiveRecord::Base
   end
 
   def seconds_to_duration(seconds)
-    Time.at(seconds).utc.strftime("%M:%S")
+    if seconds
+      Time.at(seconds).utc.strftime("%M:%S")
+    else
+      0
   end
   
   def to_jq_upload
