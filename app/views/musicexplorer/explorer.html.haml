@@ -26,20 +26,14 @@
       %td.row-buttons
         .button-container
           .btn-group
-            %a.btn.btn-small.play-btn
+            %a.btn.btn-small.has-tooltip.play-btn{"data-toogle" => "tooltip", "data-original-title" => "Abspielen", "data-delay" => "500"}
               %i.icon-play
-                Wiedergabe
-            %a.btn.btn-small.addtoplay-btn
+            %a.btn.btn-small.has-tooltip.addtoplay-btn{"data-toogle" => "tooltip", "data-original-title" => "An die Wiedergabeliste anhängen", "data-delay" => "500"}
+              %i.icon-list-ul
+            %a.btn.btn-small.has-tooltip.search-btn{"data-toogle" => "tooltip", "data-original-title" => "Infos anzeigen", "data-delay" => "500"}
               %i.icon-search
-                An aktuelle Wiedergabe
-          .btn-group
-            %a.btn.btn-small.search-btn
-              %i.icon-search
-                Infos
-          .btn-group
-            %a#playlist-container.btn.btn-small.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            %a#playlist-container.btn.btn-small.has-tooltip.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               %i.icon-bookmark
-                Hinzufügen
             %ul.dropdown-menu
               - @playlists.each do |playlist|
                 %li

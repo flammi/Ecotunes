@@ -78,6 +78,8 @@ fillList = (jsonString, myPlaylist) ->
           
           newEntry.find(".row-buttons").find(".playlist-button").on "click", ->
             addSongToPlaylist $(this).data("playlistid"), song.id
+  #Activate tooltips
+  $(".has-tooltip").tooltip()
 
 
 addSongToPlaylist = (playlistid, songid) ->
