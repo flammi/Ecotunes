@@ -66,14 +66,12 @@ class ApplicationController < ActionController::Base
 
         album = Album.find_by_name(tag.album)
         if album == nil
-          debugger
           album = Album.create
           album.name = tag.album
           album.artist = artist
           album.save
           artist.albums << album
         end
-        debugger
         song.album = album
         album.songs << song
         album.artist = artist
@@ -131,8 +129,22 @@ class ApplicationController < ActionController::Base
   def get_songs_from_album artist_name, album_name
     result = get_album_infos artist_name, album_name
     if result != nil
-      tracks = result['tracks']['track']
-      return tracks.map {|track| {"rank" => track['rank'], "name" => track['name']}}
+      puts result
+      if result.has_key?('tracks')
+        if result['tracks'].has_key?('track')
+          tracks = result['tracks']['track']
+          if tracks.kind_of?(Array)
+            return tracks.map {|track| {"rank" => track['rank'], "name" => track['name']}}
+          else
+            #kein album sondern wohl eine single
+            if tracks.has_key?('rank')
+              if tracks.has_key?('name')
+                return [{"rank" => tracks['rank'], "name" => tracks['name']}]
+              end
+            end
+          end
+        end
+      end
     end
     return nil
   end

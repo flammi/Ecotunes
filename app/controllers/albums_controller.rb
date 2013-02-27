@@ -14,7 +14,10 @@ class AlbumsController < ApplicationController
   # GET /albums/1.json
   def show
     @album = Album.find(params[:id])
-
+    if @album.artist != nil
+      @songs = get_songs_from_album  @album.artist.name, @album.name
+    end
+    @songs = [] if @songs == nil
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @album }
