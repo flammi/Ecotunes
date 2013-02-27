@@ -1,21 +1,33 @@
-%p#notice= notice
+- content_for :header do
+  = stylesheet_link_tag 'albums'
 
 %h2
-  Artist:
-= @album.artist.name
-%h3
-  Album:
-= @album.name
-.album-image
-- if @album_cover
-  %img{:src => "#{@album_cover}", :width => 200, :height => 200}
-- else
-  = image_tag "imagenotfound.png", :height => 200, :width => 200
+  - if @album.artist
+    #{@album.artist.name} - #{@album.name}
+  - else
+    #{@album.name} 
+.album
+  .album-image
+    - if @album_cover
+      %img{:src => "#{@album_cover}", :width => 400, :height => 400}
+    - else
+      = image_tag "imagenotfound.png", :height => 200, :width => 200
+  .album-description
+    - if @description
+      #{@description}
+    - else
+      Keine Beschreibung vorhanden
+.songs
+  %h4
+    .basic_info
+      Lieder vom Album:
+      %ol
+      - @songs.each do |song|
+        %li #{song['name']}
 
-%h5 
-  Lieder vom Album:
-  %ol
-    - @songs.each do |song|
-      %li #{song['name']}
+
+  
+  
+
 
 

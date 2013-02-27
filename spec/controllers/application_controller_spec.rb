@@ -57,7 +57,18 @@ describe ApplicationController do
       songs.should_not eq(nil)
       songs.length.should eq(11)
     end
-
-
   end
+
+  describe "test description from album" do
+    it "should have a description" do
+      desc = controller.get_description_from_album "Eminem", "Infinite"
+      desc.should_not eq(nil)
+      desc.length.should_not eq(0)
+    end
+    it "shouldn't have a description" do
+      desc = controller.get_description_from_album "sadsa", "dsadsadsad"
+      desc.should eq(nil)
+    end
+  end
+
 end

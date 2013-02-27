@@ -1,0 +1,13 @@
+- content_for :header do
+  = stylesheet_link_tag 'collection'
+%h1 Eigenes Album erstellen
+%div
+  %h4
+    Album von einem Künstler hinzufügen:
+  %form.form-inline
+    <input type="text" style:"float:left" id="inputEmail" placeholder="Künstlername">
+    <input type="text" style:"float:right" id="inputAlbum" placeholder="Albumname">
+    <button type="submit" style:"float:right" class="btn btn-inverse">Suchen
+%div
+  %textarea{:placeholder => "Gewünschte Liste von Songs bitte in folgender Form angeben: Künstler - Titel", :rows => "5"}
+<button class="btn btn-inverse" style:"float:left"> Lieder suchen und Playlist zusammenstellen

@@ -125,16 +125,27 @@ class ApplicationController < ActionController::Base
     return nil
   end
   
+  def get_description_from_album artist_name, album_name
+    result = get_album_infos artist_name, album_name
+    if result != nil
+      if result.has_key?('wiki')
+        if result['wiki'].has_key?('content')
+          return result['wiki']['content']
+        end
+      end
+    end
+    return nil
+  end
+
 
   def get_songs_from_album artist_name, album_name
     result = get_album_infos artist_name, album_name
     if result != nil
-      puts result
       if result.has_key?('tracks')
         if result['tracks'].has_key?('track')
           tracks = result['tracks']['track']
           if tracks.kind_of?(Array)
-            return tracks.map {|track| {"rank" => track['rank'], "name" => track['name']}}
+            return tracks.map {|track| {"rank" => track['rank'], "name" => track['name']}} #length kriegt man auch z.b.
           else
             #kein album sondern wohl eine single
             if tracks.has_key?('rank')

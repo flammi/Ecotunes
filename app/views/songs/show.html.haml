@@ -1,3 +1,6 @@
+- content_for :header do
+  = stylesheet_link_tag 'songs'
+  
 %h2 
   - if @song.artist != nil
     #{@song.artist.name} - #{@song.title}

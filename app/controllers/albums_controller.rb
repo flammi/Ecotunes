@@ -17,7 +17,9 @@ class AlbumsController < ApplicationController
     if @album.artist != nil
       @songs = get_songs_from_album  @album.artist.name, @album.name
       @album_cover = get_album_cover @album.artist.name, @album.name
+      @description = get_description_from_album @album.artist.name, @album.name
     end
+
     @songs = [] if @songs == nil
     respond_to do |format|
       format.html # show.html.erb
