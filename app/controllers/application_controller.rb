@@ -4,7 +4,6 @@ include ActionView::Helpers::OutputSafetyHelper
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  cache =  ActiveSupport::Cache::MemoryStore.new
 
   def fingerprint_and_duration filepath
     if filepath != nil

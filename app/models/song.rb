@@ -27,7 +27,7 @@ class Song < ActiveRecord::Base
     if seconds
       Time.at(seconds).utc.strftime("%M:%S")
     else
-      0
+      "0:00"
     end
   end
   

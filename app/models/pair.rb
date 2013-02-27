@@ -7,9 +7,6 @@ class Pair
   end
 
   def hash
-    puts "<<<<<<<<<<<<<<<<<"
-    puts @one.hash+@two.hash
-    puts ">>>>>>>>>>>>>>>>>>"
     @one.hash+@two.hash
   end
 end
