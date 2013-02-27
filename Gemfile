@@ -20,7 +20,7 @@ gem 'delayed_job_active_record'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
 	gem 'sqlite3'
-	gem 'rspec-rails', "2.12.2"
+	gem 'rspec-rails'
 end
 
 
