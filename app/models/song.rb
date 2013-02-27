@@ -28,6 +28,7 @@ class Song < ActiveRecord::Base
       Time.at(seconds).utc.strftime("%M:%S")
     else
       0
+    end
   end
   
   def to_jq_upload
