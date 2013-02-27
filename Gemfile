@@ -16,6 +16,7 @@ gem 'settingslogic'
 gem 'lastfm'
 gem 'delayed_job_active_record'
 gem 'debugger'
+gem 'will_paginate'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

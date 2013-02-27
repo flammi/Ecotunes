@@ -8,10 +8,7 @@ class MusicexplorerController < ApplicationController
     if filter == nil
       filter = ""
     end
-    @artists = Artist.where('name LIKE ?', "%" + filter + "%")
-    @songs = Song.where('title LIKE ?', "%" + filter + "%")
-    @albums = Album.where('name LIKE ?', "%" + filter + "%")
-
+    @songs = Song.where('title LIKE ?', "%" + filter + "%").paginate(:page => params[:page], :per_page => 5)
 
     render json: {:songs => @songs}
   end
