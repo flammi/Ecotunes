@@ -1,5 +1,6 @@
 
 require 'net/http'
+include ActionView::Helpers::OutputSafetyHelper
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
@@ -139,6 +140,20 @@ class ApplicationController < ActionController::Base
       end
     end
     return nil, nil
+  end
+
+  def fading_flash_message(text, seconds=3)
+    raw text +
+      <<-EOJS
+        <script type='text/javascript'>
+          Event.observe(window, 'load',function() { 
+            setTimeout(function() {
+              message_id = $('notice') ? 'notice' : 'warning';
+              new Effect.Fade(message_id);
+            }, #{seconds*1000});
+          }, false);
+        </script>
+      EOJS
   end
 
 end

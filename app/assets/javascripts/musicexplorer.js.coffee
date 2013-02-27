@@ -48,6 +48,7 @@ $(document).ready ->
         fillList json, myPlaylist
     );
 
+
 fillList = (jsonString, myPlaylist) ->
   $("#table-content").empty()
   $(jsonString).each (objIndex, obj) ->
@@ -77,7 +78,6 @@ fillList = (jsonString, myPlaylist) ->
           
           newEntry.find(".row-buttons").find(".playlist-button").on "click", ->
             addSongToPlaylist $(this).data("playlistid"), song.id
-
 
 
 addSongToPlaylist = (playlistid, songid) ->
