@@ -65,20 +65,18 @@ class ApplicationController < ActionController::Base
         artist.songs << song
 
         album = Album.find_by_name(tag.album)
-        
         if album == nil
+          debugger
           album = Album.create
           album.name = tag.album
           album.artist = artist
+          album.save
           artist.albums << album
         end
-        song.album == album
+        debugger
+        song.album = album
         album.songs << song
-
-        #only tracknum, if album exists
-        if tag.tracknum != nil
-          #TODO wie behandeln wir das? Man brauch wohl ne neue Klasse... ein Son
-        end
+        album.artist = artist
 
         song.released = tag.year
 

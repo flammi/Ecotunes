@@ -15,6 +15,7 @@ gem 'seed_dump'
 gem 'settingslogic'
 gem 'lastfm'
 gem 'delayed_job_active_record'
+gem 'debugger'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
