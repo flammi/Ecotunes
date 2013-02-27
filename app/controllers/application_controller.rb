@@ -90,7 +90,7 @@ class ApplicationController < ActionController::Base
     artist.save
     album.save
 
-    picture, description = get_album_info artist.name, album.name
+    picture = get_album_cover artist.name, album.name
     if picture != nil
       song.image_path = picture
     end
@@ -117,29 +117,40 @@ class ApplicationController < ActionController::Base
     return nil
   end
 
-  def get_album_info artist_name, album_name
+  def get_album_infos artist_name, album_name
     lastfm = Lastfm.new(Preferences.apikey, Preferences.secret)
-    #token = lastfm.auth.get_token
-    #lastfm.session = lastfm.auth.get_session(:token => token)['key']
-    if artist_name and album_name
+     if artist_name and album_name
       begin
         result = lastfm.album.get_info(artist_name, album_name)
-        image = result["image"].last #best quality
-        description = result["wiki"]
-        description_result = nil
-        image_result = nil
-        if description != nil
-          description_result = description["summary"]
-        end
-        if image != nil
-          image_result = image['content']
-          puts image_result
-        end
-        return image_result, description_result 
+        return result
       rescue Lastfm::ApiError
       end
     end
-    return nil, nil
+    return nil
+  end
+  
+
+  def get_album_and_songs artist_name, album_name
+    result = get_album_infos artist_name, album_name
+    tracks = result['tracks']
+    song_titles = Array.new
+    tracks.each do |track|
+      song_titles << track['name']
+    end
+    return song_titles
+  end
+
+  def get_album_cover artist_name, album_name
+    result = get_album_infos artist_name, album_name
+    if result != nil
+      image = result["image"].last #best quality
+      image_result = nil
+      if image != nil
+        image_result = image['content']
+        return image_result     
+      end
+    end
+    return nil
   end
 
   def fading_flash_message(text, seconds=3)

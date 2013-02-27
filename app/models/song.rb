@@ -34,74 +34,77 @@ include Rails.application.routes.url_helpers
     }
   end
 
-  replace_characters_hash = {
-    'ä' => 'ae',
-    'ö' => 'oe',
-    'ü' => 'ue',
-
-    'ß' => 'ss',
-    '$' => 's',
-
-    '_' => ' ',
-
-    "'" => '',
-    "´" => '',
-    "`" => "",
-
-    "[" => "(",
-    "]" => ")",
-    "?" => "",
-    "!" => "",
-    '/' => "-",
-    '\\' => "-",
-
-    "featuring" => "ft",
-    " feat. " => " ft ",
-    " feat " => " ft ",
-    " ft. " => " ft ",
-    "." => "",
-    "," => "",    
-
-    'à' => 'a',
-    'á' => 'a',
-    'â' => 'a',
-    'ã' => 'a',
-
-    'ç' => 'c',
-
-    'è' => 'e',
-    'é' => 'e',
-    'ê' => 'e',
-    'ë' => 'e',
-
-    'ì' => 'i',
-    'í' => 'i',
-    'î' => 'i',
-    'ï' => 'i',
-
-    'ñ' => 'n',
-
-    'ò' => 'o',
-    'ó' => 'o',
-    'ô' => 'o',
-    'õ' => 'o',
-
-    'ù' => 'u',
-    'ú' => 'u',
-    'û' => 'u',
-
-    'ý' => 'y',
-    'ÿ' => 'y',
-
-    '$' => 's',
-    '+' => '&',
-  }
+  
 
   def replace_characters
-    extension = File.extname(song_file_name).downcase
-    name = self.song_file_name
-    replace_characters_hash.each{|k, v| name.gsub!(k,v)}
-    self.song.instance_write(:file_name, "#{name}#{extension}")
+
+    replace_characters_hash = {
+      'ä' => 'ae',
+      'ö' => 'oe',
+      'ü' => 'ue',
+
+      'ß' => 'ss',
+      '$' => 's',
+
+      '_' => ' ',
+
+      "'" => '',
+      "´" => '',
+      "`" => "",
+
+      "[" => "(",
+      "]" => ")",
+      "?" => "",
+      "!" => "",
+      '/' => "-",
+      '\\' => "-",
+
+      "featuring" => "ft",
+      " feat. " => " ft ",
+      " feat " => " ft ",
+      " ft. " => " ft ",
+      "." => "",
+      "," => "",    
+
+      'à' => 'a',
+      'á' => 'a',
+      'â' => 'a',
+      'ã' => 'a',
+
+      'ç' => 'c',
+
+      'è' => 'e',
+      'é' => 'e',
+      'ê' => 'e',
+      'ë' => 'e',
+
+      'ì' => 'i',
+      'í' => 'i',
+      'î' => 'i',
+      'ï' => 'i',
+
+      'ñ' => 'n',
+
+      'ò' => 'o',
+      'ó' => 'o',
+      'ô' => 'o',
+      'õ' => 'o',
+
+      'ù' => 'u',
+      'ú' => 'u',
+      'û' => 'u',
+
+      'ý' => 'y',
+      'ÿ' => 'y',
+
+      '$' => 's',
+      '+' => '&',
+    }
+
+    #extension = File.extname(song_file_name).downcase
+    #name = self.song_file_name
+    #replace_characters_hash.each{|k, v| name.gsub!(k,v)}
+    #self.song.instance_write(:file_name, "#{name}#{extension}")
   end
 
 end
