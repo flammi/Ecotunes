@@ -44,17 +44,24 @@ $(document).ready ->
           fillList json, myPlaylist
   );
   $("#search").keyup -> 
+    $("#table-content").empty()
     $.getJSON("/musicexplorer/search?filter=" + $("#search").val(), {}, (json, resp) -> 
         fillList json, myPlaylist
     );
+  
+  $(document).endlessScroll {bottomPixels : 100, ceaseFireOnEmpty: false, fireOnce: false, fireDelay: 10, ceaseFire: (seq, pseq, direction) ->
+      if direction is "prev"
+        return true
+      else
+        return false
+    callback: (seq, pseq, direction) ->
+      $.getJSON "/musicexplorer/search?filter=" + $("#search").val() + "&page=#{pseq+1}" , {}, (json, resp) -> 
+        fillList json, myPlaylist
+  }
+  return
 
-songDuration = (duration) ->
-  mins = duration / 60
-  secs = duration % 60
-  return ""
 
 fillList = (jsonString, myPlaylist) ->
-  $("#table-content").empty()
   $(jsonString).each (objIndex, obj) ->
     $(obj.songs).each (songIndex, song) ->
           newEntry = $("#row-entry-container").children().clone();
@@ -84,6 +91,7 @@ fillList = (jsonString, myPlaylist) ->
             addSongToPlaylist $(this).data("playlistid"), song.id
   #Activate tooltips
   $(".has-tooltip").tooltip()
+
 
 
 addSongToPlaylist = (playlistid, songid) ->
