@@ -48,6 +48,10 @@ $(document).ready ->
         fillList json, myPlaylist
     );
 
+songDuration = (duration) ->
+  mins = duration / 60
+  secs = duration % 60
+  return ""
 
 fillList = (jsonString, myPlaylist) ->
   $("#table-content").empty()
@@ -56,10 +60,10 @@ fillList = (jsonString, myPlaylist) ->
           newEntry = $("#row-entry-container").children().clone();
           newEntry.find(".row-track").text(song.title)
           if song.artist != null
-            newEntry.find(".row-artist").text(song.artist.name)
+            newEntry.find(".row-artist").html("<a href=\"/artists/#{song.artist.id}\" class=\"btn btn-link\">" + song.artist.name + "</a>")
           newEntry.find(".row-time").text(song.duration)
           if song.album != null
-            newEntry.find(".row-album").text(song.album.name)
+            newEntry.find(".row-album").html("<a href=\"/albums/#{song.album.id}\" class=\"btn btn-link\">#{song.album.name}</a>")
           
           newEntry.find(".row-buttons").find(".play-btn").on "click", ->
             $("#jquery_jplayer_1").jPlayer "setMedia", {mp3: "http://localhost:3000#{song.url}"}

@@ -6,6 +6,7 @@ class Album < ActiveRecord::Base
 
   def as_json(options={})
     {:name => self.name,
+     :id => self.id,
      :release => self.release}
   end
 
