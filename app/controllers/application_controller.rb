@@ -194,4 +194,16 @@ class ApplicationController < ActionController::Base
       EOJS
   end
 
+  def get_artist_information artist_name
+    lastfm = Lastfm.new(Preferences.apikey, Preferences.secret)
+     if artist_name
+      begin
+        result = lastfm.artist.get_info(artist_name)
+        return result
+      rescue Lastfm::ApiError
+      end
+    end
+    return nil
+  end
+
 end

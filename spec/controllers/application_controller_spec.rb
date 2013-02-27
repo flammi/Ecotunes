@@ -71,4 +71,16 @@ describe ApplicationController do
     end
   end
 
+  describe "test artist-information" do
+    it "should have an information" do
+      result = controller.get_artist_information "Cher"
+      result.should_not eq(nil)
+    end
+
+    it "shouldn't have an information" do
+      result = controller.get_artist_information "Malte Husmann"
+      result.should eq(nil)
+    end
+  end
+
 end
