@@ -1,5 +1,6 @@
 # encoding: utf-8
 class Song < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   attr_accessible :song, :image_path, :artist_id, :album_id, :artist, :genre_id, :length, :path, :released, :title, :album, :genre, :finger_print, :acoust_id, :bitrate, :channel_mode, :sample_rate, :mpeg_version, :playlists
   belongs_to :artist
   belongs_to :album
@@ -11,11 +12,10 @@ class Song < ActiveRecord::Base
     :path => Preferences.mp3_folder + "/:basename.:extension"
 
   before_create :replace_characters
-include Rails.application.routes.url_helpers
 
   def as_json(options={})
     {:title => self.title,
-     :duration => self.length,
+     :duration => (self.seconds_to_duration self.length),
      :album => self.album,
      :artist => self.artist,
      :file_name => self.song_file_name,
@@ -23,6 +23,9 @@ include Rails.application.routes.url_helpers
      :url => Preferences.mp3_url + self.song.url}
   end
 
+  def seconds_to_duration(seconds)
+    Time.at(seconds).utc.strftime("%M:%S")
+  end
   
   def to_jq_upload
     {
