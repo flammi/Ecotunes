@@ -6,6 +6,7 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
     = yield :header
+- if current_user
   %body
     .navbar.navbar-static.navbar-inverse.navbar-fixed-top
       .navbar-inner
@@ -23,6 +24,9 @@
           %form.navbar-search.pull-right
             %input#search.search-query{:placeholder => "Musik suchen", :type => "text"}
             .icon-search
+            -if current_user
+              -if current_user.name
+                = "Eingeloggt: #{current_user.name}" 
     .container#wrap
       - if flash.count != 0
         .alert
@@ -37,3 +41,7 @@
           %i.icon-chevron-down
         .container.muted.credit
           = yield :footer
+- else
+  %body
+    .container
+      = yield
