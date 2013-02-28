@@ -1,6 +1,7 @@
 Ecotunes::Application.routes.draw do
   
   get "collection" => "collection#collection"
+  post "collection" => "collection#collection"
 
   match "management" => "management#management"
   get "management/duplicatecheck"
@@ -23,6 +24,7 @@ Ecotunes::Application.routes.draw do
 
   post "playlists/newsong", :as => :new_song
   post "playlists/removesong", :as => :remove_song
+  post "playlists/addalbum"
 
   get "songs/new", :as => :musicupload
 

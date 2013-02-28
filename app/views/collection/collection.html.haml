@@ -1,13 +1,39 @@
 - content_for :header do
   = stylesheet_link_tag 'collection'
-%h1 Eigenes Album erstellen
+%h1 Playlistgenerator
 %div
-  %h4
-    Album von einem Künstler hinzufügen:
-  %form.form-inline
-    <input type="text" style:"float:left" id="inputEmail" placeholder="Künstlername">
-    <input type="text" style:"float:right" id="inputAlbum" placeholder="Albumname">
-    <button type="submit" style:"float:right" class="btn btn-inverse">Suchen
+  %h4 Playlist aus Album erstellen
+  %form.form-inline{:method => "post", :action => "/collection"}
+    %input#inputEmail{:type => "text", :name => "artist", :placeholder => "Künstlername"}
+    %input#inputAlbum{:type => "text", :name => "album", :placeholder => "Albumname"}
+      %button.btn.btn-inverse{:type => "submit"} Suchen
+  - if @result_available
+    %form{:method => "post", :action => playlists_addalbum_path}
+      %table
+        %tr
+          %th
+          %th{:style => "text-align: left; width: 50px"} Nr.
+          %th{:style => "text-align: left; width: 200px"} Titel
+          %th{:style => "text-align: left; width: 200px"} Dauer
+        - @result_rows.each_with_index do |title, index|
+          %tr{:class => title['available'] ? "available" : "not-available"}
+            %td
+              -if title['available']
+                %input{:type => "checkbox", :name => "song[]", :value => title['song_id'], :checked => "checked"}
+              -else
+                %input{:type => "checkbox", :disabled => "disabled"}
+
+            %td=title['rank']
+            %td=title['title']
+            %td=title['duration']
+      %p 
+        Wähle eine Playlist aus:
+        %select{:type=>"dropdown", :name => "playlist"}
+          -playlists_all.each do |playlist| 
+            %option{:value => playlist.id}="#{playlist.name} (#{playlist.songs.length})"
+      %button.btn.btn-inverse An Playlist anfügen
+  
 %div
+  %h4 Playlist aus Parser
   %textarea{:placeholder => "Gewünschte Liste von Songs bitte in folgender Form angeben: Künstler - Titel", :rows => "5"}
 <button class="btn btn-inverse" style:"float:left"> Lieder suchen und Playlist zusammenstellen

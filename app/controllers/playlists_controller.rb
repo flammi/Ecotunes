@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class PlaylistsController < ApplicationController
   # GET /playlists
   # GET /playlists.json
@@ -19,6 +20,18 @@ def newsong
     else
       render :json => { }, :status => 500
     end
+end
+
+def addalbum
+  flash[:notice] = "Die Lieder wurden der Playlist hinzugefügt!"
+  songs = params[:song]
+  playlist = Playlist.find(params[:playlist])
+  songs.each do |song_id|
+    song = Song.find(song_id.to_i)
+    playlist.songs << song
+  end
+  playlist.save
+  redirect_to :back
 end
 
 def removesong

@@ -152,7 +152,7 @@ class ApplicationController < ActionController::Base
         if result['tracks'].has_key?('track')
           tracks = result['tracks']['track']
           if tracks.kind_of?(Array)
-            return tracks.map {|track| {"rank" => track['rank'], "name" => track['name']}} #length kriegt man auch z.b.
+            return tracks.map {|track| {"rank" => track['rank'], "name" => track['name'], "duration" => track['duration']}} #length kriegt man auch z.b.
           else
             #kein album sondern wohl eine single
             if tracks.has_key?('rank')
