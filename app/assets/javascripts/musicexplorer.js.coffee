@@ -65,7 +65,7 @@ fillList = (jsonString, myPlaylist) ->
   $(jsonString).each (objIndex, obj) ->
     $(obj.songs).each (songIndex, song) ->
           newEntry = $("#row-entry-container").children().clone();
-          newEntry.find(".row-track").text(song.title)
+          newEntry.find(".row-track").html("<a href=\"/songs/#{song.id}\" class=\"btn btn-link\">" + song.title + "</a>")
           if song.artist != null
             newEntry.find(".row-artist").html("<a href=\"/artists/#{song.artist.id}\" class=\"btn btn-link\">" + song.artist.name + "</a>")
           newEntry.find(".row-time").text(song.duration)

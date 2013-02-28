@@ -6,7 +6,6 @@ class Song < ActiveRecord::Base
   belongs_to :album
   has_and_belongs_to_many :playlists
   belongs_to :genre
-
   has_attached_file :song,
     :url => "/:basename.:extension",
     :path => Preferences.mp3_folder + "/:basename.:extension"
@@ -108,10 +107,10 @@ class Song < ActiveRecord::Base
       '+' => '&',
     }
 
-    #extension = File.extname(song_file_name).downcase
-    #name = self.song_file_name
-    #replace_characters_hash.each{|k, v| name.gsub!(k,v)}
-    #self.song.instance_write(:file_name, "#{name}#{extension}")
+    extension = File.extname(song_file_name).downcase
+    name = self.song_file_name
+    replace_characters_hash.each{|k, v| name.gsub!(k,v)}
+    self.song.instance_write(:file_name, "#{name}#{extension}")
   end
 
 end

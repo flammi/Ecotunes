@@ -17,6 +17,10 @@ gem 'lastfm'
 gem 'delayed_job_active_record'
 gem 'debugger'
 gem 'will_paginate'
+gem 'cancan'
+gem 'devise'
+gem 'rolify'
+gem 'simple_form'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

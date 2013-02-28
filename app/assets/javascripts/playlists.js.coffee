@@ -35,6 +35,8 @@ removeSongFromPlaylist = (playlistid, songid, row) ->
   $.post("/playlists/removesong", songid: "#{songid}", playlistid: "#{playlistid}"
     ).done((data) ->
       row.remove()
+      #flash.now[:error] = "Could not save client"
+      #render :action => "new"
       #$("#alert-info").opacity = 1 #pruefen ob code 200 zurueckkam
       #$("#alert-info").delay(2200).fadeOut(300);
     ).error ->

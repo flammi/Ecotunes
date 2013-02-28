@@ -1,5 +1,12 @@
 Ecotunes::Application.routes.draw do
+  authenticated :user do
+    root :to => "musicexplorer#explorer"
+  end
+
+  root :to => redirect("/users/sign_in")
   
+  devise_for :users
+
   get "collection" => "collection#collection"
   post "collection" => "collection#collection"
   post "collection/show_result_album"
@@ -20,7 +27,7 @@ Ecotunes::Application.routes.draw do
   get "playlist_generator/Playlist"
 
   get "musicexplorer/explorer"
-  root :to => "musicexplorer#explorer"
+  
 
   get "musicexplorer/search"
 
