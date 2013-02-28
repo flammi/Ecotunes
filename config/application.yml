@@ -15,7 +15,7 @@ defaults: &defaults
   ADMIN_PASSWORD: "adminadmin123"
   ROLES: [admin, user, waiting]
 
-  REQUIRE_UNLOCK: true
+  REQUIRE_UNLOCK: false
   DEFAULT_ADMIN: true
 development:
   <<: *defaults

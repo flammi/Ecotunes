@@ -13,17 +13,19 @@ class User < ActiveRecord::Base
   after_create :set_default_role
 
   def set_default_role
-    if Preferences.REQUIRE_UNLOCK
-      self.add_role :waiting
-    end
-
     if Preferences.DEFAULT_ADMIN
       self.add_role :admin
+    else
+      self.add_role :user
     end
   end
 
   def active_for_authentication? 
-    super && approved? 
+    if !Preferences.REQUIRE_UNLOCK
+      super
+    else
+      super && approved?
+    end
   end 
 
   def inactive_message 
