@@ -1,7 +1,11 @@
+- content_for :header do
+    = stylesheet_link_tag 'devise'
 = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  %h2.form-signin-heading Bitte anmelden
-  = f.input :email, :required => false, :autofocus => true
-  = f.input :password, :required => false
-  = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
-  = f.button :submit, "Anmelden", :class=> "btn-large btn-primary"
-= render "devise/shared/links"
+    %h2 Bitte anmelden
+    .form-signin-heading
+    = f.error_notification
+    = f.input :email, :label => false, :placeholder =>"E-Mail Adresse", :required => false, :autofocus => true
+    = f.input :password, :label => false, :placeholder =>"Passwort", :required => false
+    //= f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
+    = f.button :submit, "Anmelden", :class=> "btn btn-large btn-inverse"
+    = link_to "Registrieren", new_registration_path(resource_name), :class=> "btn btn-large btn-inverse"
