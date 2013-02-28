@@ -20,12 +20,19 @@ input {
   width:246px;
 }
 
+h1 {
+  a {
+    color: #515151 !important;
+    background-color: white !important;
+    text-decoration:none !important;
+    }
+}
+
 devise-header {
   color: white;
   margin-left: -10px;
 }
 
 i {
-  color: black;
   margin-right: 10px;
 }

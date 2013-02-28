@@ -1,13 +1,15 @@
 - content_for :header do
   = stylesheet_link_tag 'devise'
+- flash.each do |name, msg|
+  = content_tag :div, msg, :id => "flash_#{name}"
 %h1
   %i.icon-cloud.icon.pull-right
   = link_to "Login", root_path
 = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
   .form-signin-heading
   = f.error_notification
-  = f.input :email, :label => false, :placeholder =>"E-Mail Adresse", :required => false, :autofocus => true
-  = f.input :password, :label => false, :placeholder =>"Passwort", :required => false
+  = f.input :email, :label => false, :placeholder =>"E-Mail Adresse", :required => true, :autofocus => true
+  = f.input :password, :label => false, :placeholder =>"Passwort", :required => true
   //= f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
   = f.button :submit, "Anmelden", :class=> "btn btn-large btn-inverse"
   = link_to "Registrieren", new_registration_path(resource_name), :class=> "btn btn-large btn-inverse"
