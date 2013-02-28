@@ -1,0 +1,35 @@
+- content_for :header do
+  = javascript_include_tag 'users'
+
+%table.table-hover.table
+  %caption
+    %h2 Aktive Nutzer im System
+  %thead
+    %th E-Mail
+  %tbody
+  - @users.each do |user|
+    - if user.approved
+      %tr.approved
+    - else
+      %tr.not-approved
+    %td= user.email
+    %td= user.name
+    %td= user.highest_role
+    %td.row-buttons
+      .button-container
+        .btn-group
+          %a.btn.btn-small.has-tooltip.delete-btn{"data-toogle" => "tooltip", "data-original-title" => "Löschen", "data-delay" => "500"}
+            %i.icon-remove
+          - if user.has_role?(:admin)
+            %a.btn.btn-small.has-tooltip.downgrade-btn{"data-toogle" => "tooltip", "data-original-title" => "Herabstufen zum Nutzer", "data-delay" => "500"}
+              %i.icon-double-angle-down
+          - else
+            %a.btn.btn-small.has-tooltip.upgrade-btn{"data-toogle" => "tooltip", "data-original-title" => "Hochstufen zum Administrator", "data-delay" => "500"}
+              %i.icon-double-angle-up
+        .btn-group
+        - if user.approved
+          %a.btn.btn-small.has-tooltip.disable-btn{"data-toogle" => "tooltip", "data-original-title" => "Sperren", "data-delay" => "500"}
+            %i.icon-circle
+        - else
+          %a.btn.btn-small.has-tooltip.enable-btn{"data-toogle" => "tooltip", "data-original-title" => "Freischalten", "data-delay" => "500"}
+            %i.icon-circle-blank

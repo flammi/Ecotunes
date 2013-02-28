@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :role_ids, :as => :admin
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
-
   after_create :set_default_role
 
   def set_default_role
@@ -17,6 +16,16 @@ class User < ActiveRecord::Base
       self.add_role :admin
     else
       self.add_role :user
+    end
+  end
+
+  def highest_role
+    if self.has_role?(:admin)
+      return "Administrator"
+    elsif self.has_role?(:user)
+      return "Benutzer"
+    else
+      "Keine Nutzerrolle"
     end
   end
 

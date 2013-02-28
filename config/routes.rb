@@ -1,4 +1,6 @@
 Ecotunes::Application.routes.draw do
+  get "user/user"
+
   authenticated :user do
     root :to => "musicexplorer#explorer"
   end
@@ -17,6 +19,7 @@ Ecotunes::Application.routes.draw do
   get "management/import"
   get "management/retagging"
 
+  get "users/index", :as => :users
 
   resources :playlists
   resources :artists

@@ -26,3 +26,11 @@
     %i.icon-tags.icon-4x{:style => "float: right; width: 70px; height:50px;"}
     %h5="Alle Songs aus dem sorted-Ordner #{Preferences.mp3_folder} werden analysiert und gegebenenfalls mit neuen Tags versehen. Dabei wird der Fingerprint an AcousticID übertragen und mögliche Resultate verarbeitet"
     %p{:style => "clear:both"}=link_to "Retagging", management_retagging_path, class: "btn btn-inverse"
+
+%div
+  %h3 Nutzerverwaltung:
+  .div
+    %i.icon-user.icon-4x{:style => "float: right; width: 70px; height:50px;"}
+    %h5="In diesem Menü können Benutzer freigeschaltet oder gesperrt werden."
+    %p{:style => "clear:both"}=link_to "Benutzerverwaltung", users_path, class: "btn btn-inverse"
+
