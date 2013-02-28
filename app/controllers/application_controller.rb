@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
     redirect_to login_path, :alert => exception.message
   end
 
-
   def fingerprint_and_duration filepath
     if filepath != nil
       IO.popen(["fpcalc", filepath]) do |io|

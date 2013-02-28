@@ -13,7 +13,10 @@ defaults: &defaults
   ADMIN_NAME: "admin"
   ADMIN_EMAIL: "admin@admin.de"
   ADMIN_PASSWORD: "adminadmin123"
-  ROLES: [admin, user]
+  ROLES: [admin, user, waiting]
+
+  REQUIRE_UNLOCK: true
+  DEFAULT_ADMIN: true
 development:
   <<: *defaults
 

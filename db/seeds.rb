@@ -14,8 +14,9 @@ Preferences.ROLES.each do |role|
 end
 puts 'DEFAULT USERS'
 admin = User.find_or_create_by_email :name => Preferences.ADMIN_NAME.dup, :email => Preferences.ADMIN_EMAIL.dup, :password => Preferences.ADMIN_PASSWORD.dup, :password_confirmation => Preferences.ADMIN_PASSWORD.dup
-puts 'user: ' << admin.name
+puts 'admin: ' << admin.name
 admin.add_role :admin
+admin.add_role :user
 
 user = User.find_or_create_by_email :name => Preferences.USER_NAME.dup, :email => Preferences.USER_EMAIL.dup, :password => Preferences.USER_PASSWORD.dup, :password_confirmation => Preferences.USER_PASSWORD.dup
 puts 'user: ' << user.name

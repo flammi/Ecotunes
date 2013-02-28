@@ -2,6 +2,7 @@ Ecotunes::Application.routes.draw do
   authenticated :user do
     root :to => "musicexplorer#explorer"
   end
+
   root :to => redirect("/users/sign_in")
   devise_for :users
 
