@@ -30,6 +30,15 @@ $(document).ready ->
     $("#song-description").text $(this).data("songtitle")
   $(".remove-btn").on "click", ->
     removeSongFromPlaylist $(this).data("playlistid"), $(this).data("songid"), $(this).closest("tr")
+  $(".add-playlist-btn").on "click", ->
+    myPlaylist.clear()
+    $(this).closest(".accordion-group").find(".play-btn").each ->
+      path = $(this).data("path")
+      myPlaylist.add
+        title: $(this).data("songtitle")
+        artist: $(this).data("artistname")
+        free: true
+        mp3: "http://localhost:3000#{path}"
 
 removeSongFromPlaylist = (playlistid, songid, row) ->
   $.post("/playlists/removesong", songid: "#{songid}", playlistid: "#{playlistid}"
@@ -42,3 +51,4 @@ removeSongFromPlaylist = (playlistid, songid, row) ->
     ).error ->
       #$("#alert-error").opacity = 1 #pruefen ob code 200 zurueckkam
       #$("#alert-error").delay(2200).fadeOut(300);
+

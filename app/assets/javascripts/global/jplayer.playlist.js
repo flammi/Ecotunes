@@ -371,6 +371,10 @@
 				}
 			}
 		},
+		clear: function() {
+			this._initPlaylist();
+			this._init();
+		},
 		select: function(index) {
 			index = (index < 0) ? this.original.length + index : index; // Negative index relates to end of array.
 			if(0 <= index && index < this.playlist.length) {

@@ -1,7 +1,5 @@
 - content_for :header do
-  = javascript_include_tag 'mp3player'
   = javascript_include_tag 'playlists'
-  = stylesheet_link_tag 'mp3player'
   = stylesheet_link_tag 'playlists'
 %div
   %h3 Playlists 
@@ -14,8 +12,12 @@
     - @playlists.each do |playlist|
       .accordion-group
         .accordion-heading
-          %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapse#{playlist.id}"}
-            #{playlist.name}
+          .group-accordion-toggle.accordion-toggle
+            %a{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapse#{playlist.id}"}
+              #{playlist.name}
+            %a.btn.btn-small.pull-right.add-playlist-btn 
+              %i.icon-play
+                Playlist abspielen
         .accordion-body.collapse.in{:id=>"collapse#{playlist.id}"}
           .accordion-inner
             %table.table.table-hover.music-table
@@ -37,7 +39,7 @@
                   %td.row-buttons
                     .button-container
                       .btn-group
-                        %a.btn.btn-small.play-btn{"data-songtitle" => song.title, "data-path" => Preferences.mp3_url + song.song.url}
+                        %a.btn.btn-small.play-btn{"data-songtitle" => song.title, "data-path" => Preferences.mp3_url + song.song.url, "data-artistname" => song.artist.name}
                           %i.icon-play
                             Abspielen
                       .btn-group
