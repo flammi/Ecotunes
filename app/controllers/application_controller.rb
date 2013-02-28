@@ -4,6 +4,11 @@ include ActionView::Helpers::OutputSafetyHelper
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :authenticate_user!
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to login_path, :alert => exception.message
+  end
+
 
   def fingerprint_and_duration filepath
     if filepath != nil
@@ -205,5 +210,6 @@ class ApplicationController < ActionController::Base
     end
     return nil
   end
+ 
 
 end

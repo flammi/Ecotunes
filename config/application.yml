@@ -6,6 +6,14 @@ defaults: &defaults
   apikey: "352e35485dead90ec0179be83979e561"
   secret: "d3044af5b2569b22b024a177d0cc555d"
   acoustid: "8hxIerS0"
+
+  USER_NAME: "user"
+  USER_PASSWORD: "useruser123"
+  USER_EMAIL: "user@user.de"
+  ADMIN_NAME: "admin"
+  ADMIN_EMAIL: "admin@admin.de"
+  ADMIN_PASSWORD: "adminadmin123"
+  ROLES: [admin, user]
 development:
   <<: *defaults
 

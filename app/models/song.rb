@@ -6,7 +6,6 @@ class Song < ActiveRecord::Base
   belongs_to :album
   has_and_belongs_to_many :playlists
   belongs_to :genre
-
   has_attached_file :song,
     :url => "/:basename.:extension",
     :path => Preferences.mp3_folder + "/:basename.:extension"
