@@ -14,8 +14,12 @@
     - @playlists.each do |playlist|
       .accordion-group
         .accordion-heading
-          %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapse#{playlist.id}"}
-            #{playlist.name}
+          .group-accordion-toggle.accordion-toggle
+            %a{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapse#{playlist.id}"}
+              #{playlist.name}
+            %a.btn.btn-small.pull-right
+              %i.icon-play
+                Playlist abspielen
         .accordion-body.collapse.in{:id=>"collapse#{playlist.id}"}
           .accordion-inner
             %table.table.table-hover.music-table
