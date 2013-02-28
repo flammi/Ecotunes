@@ -1,4 +1,5 @@
 %form{:method => "post", :action => playlists_addalbum_path}
+  %input{type: "hidden", name: "backlink", value: backlink}
   %table
     %tr
       %th
@@ -6,7 +7,7 @@
       %th{:style => "text-align: left;"} Titel
       %th{:style => "text-align: left;"} Artist
       %th{:style => "text-align: left; width: 200px"} Dauer
-    - @result_rows.each_with_index do |title, index|
+    - music_list.each_with_index do |title, index|
       %tr{:class => title['available'] ? "available" : "not-available"}
         %td
           -if title['available']

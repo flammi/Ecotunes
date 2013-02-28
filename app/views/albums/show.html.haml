@@ -1,5 +1,6 @@
 - content_for :header do
   = stylesheet_link_tag 'albums'
+  = stylesheet_link_tag 'collection'
 
 %h2
   - if @album.artist
@@ -18,16 +19,4 @@
     - else
       Keine Beschreibung vorhanden
 .songs
-  %h4
-    .basic_info
-      Lieder vom Album:
-      %ol
-      - @songs.each do |song|
-        %li #{song['name']}
-
-
-  
-  
-
-
-
+  = render :partial => "collection/music_list", :object => @song_list, :locals => {:backlink => (url_for @album) }

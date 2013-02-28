@@ -27,6 +27,15 @@ class ApplicationController < ActionController::Base
     return nil, nil
   end
 
+  def lookup_song title, artist
+    songs = Song.joins(:artist).where("lower(title) LIKE lower(?) and lower(artists.name) LIKE lower(?)", title, artist)
+    if songs.length > 0
+      return songs[0]
+    else
+      return nil
+    end
+  end
+
   def create_song song
     if song.song != nil
       tag = {}
@@ -198,6 +207,11 @@ class ApplicationController < ActionController::Base
         </script>
       EOJS
   end
+
+  def seconds_to_duration(seconds)
+    Time.at(seconds).utc.strftime("%M:%S")
+  end
+
 
   def get_artist_information artist_name
     lastfm = Lastfm.new(Preferences.apikey, Preferences.secret)

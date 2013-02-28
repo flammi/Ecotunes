@@ -7,8 +7,6 @@
     %input#inputEmail{:type => "text", :name => "artist", :placeholder => "Künstlername"}
     %input#inputAlbum{:type => "text", :name => "album", :placeholder => "Albumname"}
       %button.btn.btn-inverse{:type => "submit"} Suchen
-  - if @result_available
-    = render "music_list"
   
 %div
   %h4 Playlist aus Parser

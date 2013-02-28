@@ -1,5 +1,5 @@
 - content_for :header do
   = stylesheet_link_tag 'collection'
 
-%h2 Suchergebniss betrachten
-= render "music_list"
+%h2 Suchergebnis betrachten
+= render :partial => "music_list", :object => @result_rows, :locals => {:backlink => collection_path}

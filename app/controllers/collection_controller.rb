@@ -1,17 +1,4 @@
 class CollectionController < ApplicationController
-  def seconds_to_duration(seconds)
-    Time.at(seconds).utc.strftime("%M:%S")
-  end
-
-  def lookup_song title, artist
-    songs = Song.joins(:artist).where("lower(title) LIKE lower(?) and lower(artists.name) LIKE lower(?)", title, artist)
-    if songs.length > 0
-      return songs[0]
-    else
-      return nil
-    end
-  end
-
   def show_result_album
     album = params[:album] 
     artist = params[:artist]

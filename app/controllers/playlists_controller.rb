@@ -24,6 +24,7 @@ end
 
 def addalbum
   songs = params[:song]
+  backlink = params[:backlink]
   if songs != nil
     flash[:notice] = "Die Lieder wurden der Playlist hinzugefügt!"
     playlist = Playlist.find(params[:playlist])
@@ -35,7 +36,7 @@ def addalbum
   else
     flash[:notice] = "Es wurde keine Lieder ausgewählt die der Playlist hinzugefügt werden können!"
   end
-  redirect_to collection_path
+  redirect_to backlink
 end
 
 def removesong
