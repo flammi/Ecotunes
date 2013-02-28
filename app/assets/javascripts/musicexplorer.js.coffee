@@ -73,6 +73,7 @@ fillList = (jsonString, myPlaylist) ->
             newEntry.find(".row-album").html("<a href=\"/albums/#{song.album.id}\" class=\"btn btn-link\">#{song.album.name}</a>")
           
           newEntry.find(".row-buttons").find(".play-btn").on "click", ->
+            myPlaylist.clear()
             $("#jquery_jplayer_1").jPlayer "setMedia", {mp3: "http://localhost:3000#{song.url}"}
             $("#jquery_jplayer_1").jPlayer "play"
             $("#song-description").text song.title

@@ -27,10 +27,7 @@ Ecotunes::Application.routes.draw do
   resources :songs
 
 
-  get "playlist_generator/Playlist"
-
   get "musicexplorer/explorer"
-  
 
   get "musicexplorer/search"
 

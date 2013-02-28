@@ -25,6 +25,7 @@ $(document).ready ->
   )
   
   $(".play-btn").on "click", ->
+    myPlaylist.clear()
     $("#jquery_jplayer_1").jPlayer "setMedia", {mp3: "http://localhost:3000" + $(this).data("path")}
     $("#jquery_jplayer_1").jPlayer "play"
     $("#song-description").text $(this).data("songtitle")
