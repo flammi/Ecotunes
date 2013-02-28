@@ -23,15 +23,19 @@ def newsong
 end
 
 def addalbum
-  flash[:notice] = "Die Lieder wurden der Playlist hinzugefügt!"
   songs = params[:song]
-  playlist = Playlist.find(params[:playlist])
-  songs.each do |song_id|
-    song = Song.find(song_id.to_i)
-    playlist.songs << song
+  if songs != nil
+    flash[:notice] = "Die Lieder wurden der Playlist hinzugefügt!"
+    playlist = Playlist.find(params[:playlist])
+    songs.each do |song_id|
+      song = Song.find(song_id.to_i)
+      playlist.songs << song
+    end
+    playlist.save
+  else
+    flash[:notice] = "Es wurde keine Lieder ausgewählt die der Playlist hinzugefügt werden können!"
   end
-  playlist.save
-  redirect_to :back
+  redirect_to collection_path
 end
 
 def removesong

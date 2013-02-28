@@ -1,0 +1,26 @@
+%form{:method => "post", :action => playlists_addalbum_path}
+  %table
+    %tr
+      %th
+      %th{:style => "text-align: left; width: 50px"} Nr.
+      %th{:style => "text-align: left;"} Titel
+      %th{:style => "text-align: left;"} Artist
+      %th{:style => "text-align: left; width: 200px"} Dauer
+    - @result_rows.each_with_index do |title, index|
+      %tr{:class => title['available'] ? "available" : "not-available"}
+        %td
+          -if title['available']
+            %input{:type => "checkbox", :name => "song[]", :value => title['song_id'], :checked => "checked"}
+          -else
+            %input{:type => "checkbox", :disabled => "disabled"}
+
+        %td=title['rank']
+        %td=title['title']
+        %td=title['artist']
+        %td=title['duration']
+  %p.add-section 
+    Wähle eine Playlist aus, zu der du die Lieder hinzufügen möchtest:
+    %select{:type=>"dropdown", :name => "playlist"}
+      -playlists_all.each do |playlist| 
+        %option{:value => playlist.id}="#{playlist.name} (#{playlist.songs.length})"
+  %button.btn.btn-inverse An Playlist anfügen

@@ -10,3 +10,20 @@ textarea{
 tr.not-available {
   color: #bbb;
 }
+
+td {
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  vertical-align: center;
+}
+
+.add-section {
+  margin-top: 20px;
+
+  select {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}

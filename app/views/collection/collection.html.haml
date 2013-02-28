@@ -3,37 +3,15 @@
 %h1 Playlistgenerator
 %div
   %h4 Playlist aus Album erstellen
-  %form.form-inline{:method => "post", :action => "/collection"}
+  %form.form-inline{:method => "post", :action => collection_show_result_album_path}
     %input#inputEmail{:type => "text", :name => "artist", :placeholder => "Künstlername"}
     %input#inputAlbum{:type => "text", :name => "album", :placeholder => "Albumname"}
       %button.btn.btn-inverse{:type => "submit"} Suchen
   - if @result_available
-    %form{:method => "post", :action => playlists_addalbum_path}
-      %table
-        %tr
-          %th
-          %th{:style => "text-align: left; width: 50px"} Nr.
-          %th{:style => "text-align: left; width: 200px"} Titel
-          %th{:style => "text-align: left; width: 200px"} Dauer
-        - @result_rows.each_with_index do |title, index|
-          %tr{:class => title['available'] ? "available" : "not-available"}
-            %td
-              -if title['available']
-                %input{:type => "checkbox", :name => "song[]", :value => title['song_id'], :checked => "checked"}
-              -else
-                %input{:type => "checkbox", :disabled => "disabled"}
-
-            %td=title['rank']
-            %td=title['title']
-            %td=title['duration']
-      %p 
-        Wähle eine Playlist aus:
-        %select{:type=>"dropdown", :name => "playlist"}
-          -playlists_all.each do |playlist| 
-            %option{:value => playlist.id}="#{playlist.name} (#{playlist.songs.length})"
-      %button.btn.btn-inverse An Playlist anfügen
+    = render "music_list"
   
 %div
   %h4 Playlist aus Parser
-  %textarea{:placeholder => "Gewünschte Liste von Songs bitte in folgender Form angeben: Künstler - Titel", :rows => "5"}
-<button class="btn btn-inverse" style:"float:left"> Lieder suchen und Playlist zusammenstellen
+  %form{action: collection_show_result_parser_path, method: "post"}
+    %textarea{:placeholder => "Gewünschte Liste von Songs bitte in folgender Form angeben: Künstler - Titel", :name => "listing", :rows => "5"}
+    %button.btn.btn-inverse{style: "display:block"} Lieder suchen und Playlist zusammenstellen

@@ -2,6 +2,8 @@ Ecotunes::Application.routes.draw do
   
   get "collection" => "collection#collection"
   post "collection" => "collection#collection"
+  post "collection/show_result_album"
+  post "collection/show_result_parser"
 
   match "management" => "management#management"
   get "management/duplicatecheck"
