@@ -4,8 +4,8 @@ Ecotunes::Application.routes.draw do
   end
 
   root :to => redirect("/users/sign_in")
+  
   devise_for :users
-
 
   get "collection" => "collection#collection"
 

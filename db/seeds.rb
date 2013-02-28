@@ -17,7 +17,9 @@ admin = User.find_or_create_by_email :name => Preferences.ADMIN_NAME.dup, :email
 puts 'admin: ' << admin.name
 admin.add_role :admin
 admin.add_role :user
+admin.approved = true
 
 user = User.find_or_create_by_email :name => Preferences.USER_NAME.dup, :email => Preferences.USER_EMAIL.dup, :password => Preferences.USER_PASSWORD.dup, :password_confirmation => Preferences.USER_PASSWORD.dup
 puts 'user: ' << user.name
 user.add_role :user
+user.approved = true
