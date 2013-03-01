@@ -39,6 +39,12 @@ def addalbum
   redirect_to backlink
 end
 
+def getm3u
+    @playlist = Playlist.find(params[:id])
+    @path = Preferences.mp3_folder
+    render :inline => "<% @playlist.songs.each do |p| %><%=@path%>/<%=p.song_file_name%>\r\n<% end %>", :content_type => "audio/x-mpegurl"
+end
+
 def removesong
     @playlist = Playlist.find(params[:playlistid])
     elem = @playlist.songs.find_by_id(params[:songid])
