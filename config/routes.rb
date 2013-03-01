@@ -26,6 +26,7 @@ Ecotunes::Application.routes.draw do
   resources :albums
   resources :songs
 
+  match "getm3u/:id" => "playlists#getm3u"
 
   get "musicexplorer/explorer"
 
