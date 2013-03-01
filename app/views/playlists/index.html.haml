@@ -19,12 +19,21 @@
               %a.btn.btn-small.add-playlist-btn 
                 %i.icon-play
                   Playlist abspielen
-              %a.btn.btn-small.rename-playlist-btn{:href => "playlists/#{playlist.id}/edit"} 
-                %i.icon-pencil
-                  Umbenennen                                   
-              %a.btn.btn-small.delete-playlist-btn{"data-playlistid" => playlist.id} 
-                %i.icon-trash
-                  Löschen              
+              %a.btn.btn-small.dropdown-toggle{"data-playlistid" => playlist.id, "data-toggle" => "dropdown", :href => "#"}
+                %i.icon-cog
+              %ul.dropdown-menu
+                %li
+                  %a.rename-playlist-btn{:href => "playlists/#{playlist.id}/edit"} 
+                    %i.icon-pencil
+                      Umbenennen
+                %li
+                  %a.delete-playlist-btn{"data-playlistid" => playlist.id} 
+                    %i.icon-trash
+                      Löschen              
+                %li
+                  %a.export-playlist-btn{"data-playlistid" => playlist.id} 
+                    %i.icon-cloud-download
+                      Export  
 
         .accordion-body.collapse.in{:id=>"collapse#{playlist.id}"}
           .accordion-inner

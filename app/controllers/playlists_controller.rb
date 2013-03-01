@@ -41,7 +41,8 @@ end
 
 def removesong
     @playlist = Playlist.find(params[:playlistid])
-    index = @playlist.songs.index(params[:songid])
+    elem = @playlist.songs.find_by_id(params[:songid])
+    index = @playlist.songs.rindex(elem)
     if index != nil
       @playlist.songs.delete_at(index)
     end
