@@ -41,6 +41,8 @@
                 %a.new-playlist-button{:href => "/playlists/new"}
                   Neue Playlist anlegen
 - content_for :footer do
+  #button{:onclick => "javascript:showIFrame();", :style => "background: #009FE3;position: fixed;padding: 0;bottom: -10px; left: 10px; width: 100px; height: 60px;-webkit-box-shadow: 3px 2px 5px #333;-moz-box-shadow: 3px 2px 5px #333;box-shadow: 3px 2px 5px #333;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;cursor: pointer;"}
+    %img{:src => "http://fruitback.digineo.de//logo_mini.png", :style => "margin-top: -20px; margin-left: 5px;"}/
   #player
     .jp-type-playlist
     #jquery_jplayer_1.jp-jplayer{:style => "width: 0px; height: 0px;"}
