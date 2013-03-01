@@ -37,9 +37,10 @@ class CollectionController < ApplicationController
       entry["title"] = song
       entry["artist"] = artist
       if song_in_db != nil
+        debugger
         entry["available"] = true
         entry["song_id"] = song_in_db.id
-        entry["duration"] = song.length
+        entry["duration"] = seconds_to_duration(song_in_db.length)
       else
         entry["available"] = false
       end
