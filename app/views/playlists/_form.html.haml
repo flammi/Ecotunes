@@ -1,0 +1,13 @@
+= form_for(@playlist) do |f|
+  - if @playlist.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@playlist.errors.count, "error")
+        prohibited this playlist from being saved:
+      %ul
+        - @playlist.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.text_field :name, :placeholder => "Name der neuen Playlist", :label => false
+  .actions
+    %button.btn.btn-inverse Playlist erstellen
