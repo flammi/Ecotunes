@@ -31,7 +31,7 @@
                     %i.icon-trash
                       Löschen              
                 %li
-                  %a.export-playlist-btn{"data-playlistid" => playlist.id} 
+                  %a.export-playlist-btn{"data-playlistid" => playlist.id, :href => "/getm3u/#{playlist.id}"} 
                     %i.icon-cloud-download
                       Export  
 
