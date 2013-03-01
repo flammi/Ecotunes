@@ -31,6 +31,13 @@ Ecotunes::Application.routes.draw do
 
   get "musicexplorer/search"
 
+
+  post "users/remove_user", :as => :remove_user
+  post "users/upgrade_user", :as => :upgrade_user
+  post "users/downgrade_user", :as => :downgrade_user
+  post "users/activate_user", :as => :activate_user
+  post "users/deactivate_user", :as => :deactivate_user
+
   post "playlists/newsong", :as => :new_song
   post "playlists/removesong", :as => :remove_song
   post "playlists/addalbum"
