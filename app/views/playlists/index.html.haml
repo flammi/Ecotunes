@@ -18,7 +18,10 @@
             .btn-group.pull-right
               %a.btn.btn-small.add-playlist-btn 
                 %i.icon-play
-                  Playlist abspielen            
+                  Playlist abspielen
+              %a.btn.btn-small.rename-playlist-btn{:href => "playlists/#{playlist.id}/edit"} 
+                %i.icon-pencil
+                  Umbenennen                                   
               %a.btn.btn-small.delete-playlist-btn{"data-playlistid" => playlist.id} 
                 %i.icon-trash
                   Löschen              

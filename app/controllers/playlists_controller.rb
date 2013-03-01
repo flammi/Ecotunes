@@ -102,7 +102,7 @@ end
 
     respond_to do |format|
       if @playlist.update_attributes(params[:playlist])
-        format.html { redirect_to @playlist, notice: 'Playlist was successfully updated.' }
+        format.html { redirect_to playlists_path, notice: 'Playlist was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
