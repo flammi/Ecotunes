@@ -41,7 +41,15 @@ $(document).ready ->
         free: true
         mp3: "http://localhost:3000#{path}"
   $(".delete-playlist-btn").on "click", ->
-    alert "ha"  
+    playlistid = $(this).data("playlistid")
+    entry = $(this).closest(".accordion-group")
+    $.ajax
+      url: "/playlists/#{playlistid}"
+      type: 'DELETE'
+      success: (result) ->
+        entry.remove()
+
+
 
 removeSongFromPlaylist = (playlistid, songid, row) ->
   $.post("/playlists/removesong", songid: "#{songid}", playlistid: "#{playlistid}"
