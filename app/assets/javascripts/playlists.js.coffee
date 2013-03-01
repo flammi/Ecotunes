@@ -40,6 +40,8 @@ $(document).ready ->
         artist: $(this).data("artistname")
         free: true
         mp3: "http://localhost:3000#{path}"
+  $(".delete-playlist-btn").on "click", ->
+    alert "ha"  
 
 removeSongFromPlaylist = (playlistid, songid, row) ->
   $.post("/playlists/removesong", songid: "#{songid}", playlistid: "#{playlistid}"
