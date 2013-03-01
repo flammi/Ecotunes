@@ -22,7 +22,7 @@
               - if current_user.has_role?(:admin)
                 %li= link_to "Management", management_path
             %li= link_to "Playlists", playlists_path
-            %li= link_to "Album generieren", collection_path
+            %li= link_to "Playlist generieren", collection_path
           %ul.nav.pull-right
             %li= link_to "Logout", destroy_user_session_path, :method => :delete, :alert => "Erfolgreich ausgeloggt!"
           %form.navbar-search.pull-right

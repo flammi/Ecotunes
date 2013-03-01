@@ -1,4 +1,3 @@
-
 require 'net/http'
 include ActionView::Helpers::OutputSafetyHelper
 
