@@ -13,7 +13,8 @@ fileUploadErrors = {
 
 $ ->
   # Initialize the jQuery File Upload widget:
-  $("#fileupload").fileupload()
+  $("#fileupload").fileupload
+    acceptFileTypes: /(\.|\/)(mp3|MP3)$/i
   
   # Load existing files:
   $.getJSON $("#fileupload").prop("action"), (files) ->
