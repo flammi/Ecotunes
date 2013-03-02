@@ -24,6 +24,18 @@ $(document).ready ->
     wmode: "window"
   )
   
+#  if localStorage.getItem("current")?
+#    myPlaylist.select localStorage.getItem "current"
+#    time = localStorage.getItem "current"
+#    if localStorage.getItem("paused") == "false"
+#      $("#jquery_jplayer_1").jPlayer
+#        ready: ->
+#          $('#jquery_jplayer_1').jPlayer("play", time)
+#    else 
+#      $("#jquery_jplayer_1").jPlayer
+#        ready: ->
+#          $('#jquery_jplayer_1').jPlayer("pause", time)
+
   $(".play-btn").on "click", ->
     myPlaylist.clear()
     $("#jquery_jplayer_1").jPlayer "setMedia", {mp3: "http://localhost:3000" + $(this).data("path")}

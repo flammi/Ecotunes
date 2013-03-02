@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready ->
-  
+
   window.onbeforeunload = ->
     localStorage.setItem "playlist", JSON.stringify myPlaylist.playlist
     localStorage.setItem "current", myPlaylist.current
@@ -22,7 +22,6 @@ $(document).ready ->
     wmode: "window"
   )
 
-
 #  if localStorage.getItem("current")?
 #    myPlaylist.select localStorage.getItem "current"
 #    time = localStorage.getItem "current"
@@ -34,7 +33,6 @@ $(document).ready ->
 #      $("#jquery_jplayer_1").jPlayer
 #        ready: ->
 #          $('#jquery_jplayer_1').jPlayer("pause", time)
-      
 
   $.getJSON("/musicexplorer/search?filter=" + $("#search").val(), {}, (json, resp) -> 
           fillList json, myPlaylist
