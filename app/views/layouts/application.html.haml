@@ -17,9 +17,9 @@
               = link_to "EcoTunes", root_path
             %i.icon-music.icon
           %ul.nav
-            %li= link_to "Musikdatenbank bearbeiten", musicupload_path
             - if current_user
               - if current_user.has_role?(:admin)
+                %li= link_to "Musikdatenbank bearbeiten", musicupload_path
                 %li= link_to "Management", management_path
             %li= link_to "Playlists", playlists_path
             %li= link_to "Playlist generieren", collection_path

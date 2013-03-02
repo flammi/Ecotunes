@@ -3,6 +3,7 @@ require "mp3info"
 
 class SongsController < ApplicationController
     include SongsHelper
+  load_and_authorize_resource
   # GET /songs
   # GET /songs.json
   def index
@@ -26,6 +27,8 @@ class SongsController < ApplicationController
     end
   end
 
+  def new
+  end
 
   # POST /songs
   # POST /songs.json
