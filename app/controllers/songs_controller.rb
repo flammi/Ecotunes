@@ -26,21 +26,6 @@ class SongsController < ApplicationController
     end
   end
 
-  # GET /songs/new
-  # GET /songs/new.json
-  def new
-    @song = Song.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @song }
-    end
-  end
-
-  # GET /songs/1/edit
-  def edit
-    @song = Song.find(params[:id])
-  end
 
   # POST /songs
   # POST /songs.json

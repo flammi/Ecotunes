@@ -29,15 +29,11 @@ $(document).ready ->
 #    if localStorage.getItem("paused") == "false"
 #      $("#jquery_jplayer_1").jPlayer
 #        ready: ->
-#          alert "hallo"
 #          $('#jquery_jplayer_1').jPlayer("play", time)
-#          alert time
 #    else 
 #      $("#jquery_jplayer_1").jPlayer
 #        ready: ->
-#          alert "alla"
 #          $('#jquery_jplayer_1').jPlayer("pause", time)
-#          alert time
       
 
   $.getJSON("/musicexplorer/search?filter=" + $("#search").val(), {}, (json, resp) -> 

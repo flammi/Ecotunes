@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     if id != nil
       user = User.find_by_id(id)
     end
-    if user != nil
+    if user
       if user.has_role?(:user)
         user.add_role :admin
       else
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     if id != nil
       user = User.find_by_id(id)
     end
-    if user != nil and user.has_role?(:admin)
+    if user and user.has_role?(:admin)
       user.remove_role :admin
       user.add_role :user
       if user.save
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
     if id != nil
       user = User.find_by_id(id)
     end
-    if user != nil 
+    if user
       user.approved = true
       if user.save
         render :json => { }
@@ -76,7 +76,7 @@ class UsersController < ApplicationController
     if id != nil
       user = User.find_by_id(id)
     end
-    if user != nil 
+    if user
       user.approved = false
       if user.save
         render :json => { }

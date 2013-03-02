@@ -48,7 +48,7 @@ $(document).ready ->
       type: 'DELETE'
       success: (result) ->
         entry.remove()
-
+  $(".has-tooltip").tooltip()
 
 
 removeSongFromPlaylist = (playlistid, songid, row) ->

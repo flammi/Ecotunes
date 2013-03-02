@@ -11,62 +11,51 @@ class PlaylistsController < ApplicationController
     end
   end
 
-def newsong
-    @playlist = Playlist.find(params[:playlistid])
-    @song = Song.find_by_id(params[:songid])
-    @playlist.songs << @song
-    if @playlist.save
-      render :json => { }
-    else
-      render :json => { }, :status => 500
-    end
-end
-
-def addalbum
-  songs = params[:song]
-  backlink = params[:backlink]
-  if songs != nil
-    flash[:notice] = "Die Lieder wurden der Playlist hinzugefügt!"
-    playlist = Playlist.find(params[:playlist])
-    songs.each do |song_id|
-      song = Song.find(song_id.to_i)
-      playlist.songs << song
-    end
-    playlist.save
-  else
-    flash[:notice] = "Es wurde keine Lieder ausgewählt die der Playlist hinzugefügt werden können!"
+  def newsong
+      @playlist = Playlist.find(params[:playlistid])
+      @song = Song.find_by_id(params[:songid])
+      @playlist.songs << @song
+      if @playlist.save
+        render :json => { }
+      else
+        render :json => { }, :status => 500
+      end
   end
-  redirect_to backlink
-end
 
-def getm3u
-    @playlist = Playlist.find(params[:id])
-    @path = Preferences.mp3_folder
-    render :inline => "<% @playlist.songs.each do |p| %><%=@path%>/<%=p.song_file_name%>\r\n<% end %>", :content_type => "audio/x-mpegurl"
-end
-
-def removesong
-    @playlist = Playlist.find(params[:playlistid])
-    elem = @playlist.songs.find(params[:songid])
-    if elem != nil
-      @playlist.songs.delete(elem)
-    end
-    if @playlist.save
-      render :json => { }
+  def addalbum
+    songs = params[:song]
+    backlink = params[:backlink]
+    if songs != nil
+      flash[:notice] = "Die Lieder wurden der Playlist hinzugefügt!"
+      playlist = Playlist.find(params[:playlist])
+      songs.each do |song_id|
+        song = Song.find(song_id.to_i)
+        playlist.songs << song
+      end
+      playlist.save
     else
-      render :json => { }, :status => 500
+      flash[:notice] = "Es wurde keine Lieder ausgewählt die der Playlist hinzugefügt werden können!"
     end
-end
+    redirect_to backlink
+  end
 
-  # GET /playlists/1
-  # GET /playlists/1.json
-  def show
-    @playlist = Playlist.find(params[:id])
+  def getm3u
+      @playlist = Playlist.find(params[:id])
+      @path = Preferences.mp3_folder
+      render :inline => "<% @playlist.songs.each do |p| %><%=@path%>/<%=p.song_file_name%>\r\n<% end %>", :content_type => "audio/x-mpegurl"
+  end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @playlist }
-    end
+  def removesong
+      @playlist = Playlist.find(params[:playlistid])
+      elem = @playlist.songs.find(params[:songid])
+      if elem
+        @playlist.songs.delete(elem)
+      end
+      if @playlist.save
+        render :json => { }
+      else
+        render :json => { }, :status => 500
+      end
   end
 
   # GET /playlists/new

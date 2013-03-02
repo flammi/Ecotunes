@@ -43,21 +43,6 @@ class AlbumsController < ApplicationController
     end
   end
 
-  # GET /albums/new
-  # GET /albums/new.json
-  def new
-    @album = Album.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @album }
-    end
-  end
-
-  # GET /albums/1/edit
-  def edit
-    @album = Album.find(params[:id])
-  end
 
   # POST /albums
   # POST /albums.json

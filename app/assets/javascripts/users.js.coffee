@@ -32,5 +32,3 @@ $(document).ready ->
       #handling
       ).error ->
     
-  #Activate tooltips
-  $(".has-tooltip").tooltip()

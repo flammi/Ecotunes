@@ -20,7 +20,6 @@ $ ->
     fu = $("#fileupload").data("fileupload")
     template = undefined
     fu._adjustMaxNumberOfFiles -files.length
-    console.log files
     template = fu._renderDownload(files).appendTo($("#fileupload .files"))
     
     # Force reflow:
