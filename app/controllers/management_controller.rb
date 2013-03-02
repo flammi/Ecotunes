@@ -1,7 +1,10 @@
 class ManagementController < ApplicationController
+    authorize_resource :class => false
+ 
   def management
     @jobs = ImportJob.all
   end
+  
   def duplicatecheck
     songs = Song.all
     songs_without_dups = songs.uniq do |song| song.finger_print end
