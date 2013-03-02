@@ -6,9 +6,5 @@ describe PlaylistsController do
     user = FactoryGirl.create :user
     sign_in user
   end
-  describe "Playlist Übersicht" do
-    it "Alle Playlists werden angezeigt" do
-      assigns(:playlists).should eq(Playlist.all)
-    end
-  end
+
 end
