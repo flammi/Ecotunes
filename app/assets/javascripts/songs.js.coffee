@@ -3,10 +3,10 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 fileUploadErrors = {
-  maxFileSize: 'File is too big',
-  minFileSize: 'File is too small',
-  acceptFileTypes: 'Filetype not allowed',
-  maxNumberOfFiles: 'Max number of files exceeded',
+  maxFileSize: 'Datei ist zu gross',
+  minFileSize: 'Datei ist zu klein',
+  acceptFileTypes: 'Der Datentyp ist nicht erlaubt (nur .mp3)',
+  maxNumberOfFiles: 'Zuviele Dateien',
   uploadedBytes: 'Uploaded bytes exceed file size',
   emptyResult: 'Empty file upload result'
   }
