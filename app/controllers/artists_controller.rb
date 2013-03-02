@@ -14,7 +14,10 @@ class ArtistsController < ApplicationController
   # GET /artists/1.json
   def show
     @artist = Artist.find(params[:id])
-    @desc = get_artist_information @artist.name
+    information = get_artist_information @artist.name
+    @artist_image = get_artist_image information
+    @description = get_description_from_artist information
+  
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @artist }

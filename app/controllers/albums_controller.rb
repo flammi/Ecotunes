@@ -17,20 +17,22 @@ class AlbumsController < ApplicationController
     if @album.artist != nil
       @songs = get_songs_from_album  @album.artist.name, @album.name
       @song_list = []
-      @songs.each do |song|
-        entry = Hash.new
-        entry['rank'] = song['rank']
-        entry['title'] = song['name']
-        entry['artist'] = @album.artist.name
-        song_in_db = lookup_song song['name'], @album.artist.name
-        if song_in_db != nil
-          entry['available'] = true
-          entry['song_id'] = song_in_db.id
-        else
-          entry['available'] = false
+      if @songs
+        @songs.each do |song|
+          entry = Hash.new
+          entry['rank'] = song['rank']
+          entry['title'] = song['name']
+          entry['artist'] = @album.artist.name
+          song_in_db = lookup_song song['name'], @album.artist.name
+          if song_in_db != nil
+            entry['available'] = true
+            entry['song_id'] = song_in_db.id
+          else
+            entry['available'] = false
+          end
+          entry['duration'] = seconds_to_duration(song['duration'].to_i)
+          @song_list << entry
         end
-        entry['duration'] = seconds_to_duration(song['duration'].to_i)
-        @song_list << entry
       end
       @album_cover = get_album_cover @album.artist.name, @album.name
       @description = get_description_from_album @album.artist.name, @album.name

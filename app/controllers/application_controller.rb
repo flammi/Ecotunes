@@ -150,7 +150,10 @@ class ApplicationController < ActionController::Base
     if result != nil
       if result.has_key?('wiki')
         if result['wiki'].has_key?('content')
-          return result['wiki']['content']
+          content = result['wiki']['content']
+          if content
+            return content.html_safe
+          end
         end
       end
     end
@@ -226,10 +229,12 @@ class ApplicationController < ActionController::Base
 
   def get_artist_image artist_information
     if artist_information
-      image_result = artist_information["image"].last
-      if image_result != nil
-        image = image_result['content']
-        return image     
+      if artist_information.has_key?("image")
+        image_result = artist_information["image"].last
+        if image_result != nil
+          image = image_result['content']
+          return image     
+        end
       end
     end
     return nil
@@ -237,10 +242,16 @@ class ApplicationController < ActionController::Base
 
   def get_description_from_artist artist_information
     if artist_information
-      biography_result = artist_information["bio"]
-      if biography_result != nil
-        content = biography_result['content']
-        return content     
+      if artist_information.has_key?("bio")
+        biography_result = artist_information["bio"]
+        if biography_result != nil
+          if biography_result.has_key?("content")
+            content = biography_result['content']
+            if content and content != {}
+              return content.html_safe
+            end
+          end     
+        end
       end
     end
     return nil
