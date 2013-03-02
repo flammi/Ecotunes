@@ -38,7 +38,7 @@ $(document).ready ->
 
   $(".play-btn").on "click", ->
     myPlaylist.clear()
-    $("#jquery_jplayer_1").jPlayer "setMedia", {mp3: "http://localhost:3000" + $(this).data("path")}
+    $("#jquery_jplayer_1").jPlayer "setMedia", {mp3: $(this).data("path")}
     $("#jquery_jplayer_1").jPlayer "play"
     $("#song-description").text $(this).data("songtitle")
   $(".remove-btn").on "click", ->
@@ -51,7 +51,7 @@ $(document).ready ->
         title: $(this).data("songtitle")
         artist: $(this).data("artistname")
         free: true
-        mp3: "http://localhost:3000#{path}"
+        mp3: "#{path}"
   $(".delete-playlist-btn").on "click", ->
     playlistid = $(this).data("playlistid")
     entry = $(this).closest(".accordion-group")
