@@ -223,6 +223,27 @@ class ApplicationController < ActionController::Base
     end
     return nil
   end
- 
 
+  def get_artist_image artist_information
+    if artist_information
+      image_result = artist_information["image"].last
+      if image_result != nil
+        image = image_result['content']
+        return image     
+      end
+    end
+    return nil
+  end
+
+  def get_description_from_artist artist_information
+    if artist_information
+      biography_result = artist_information["bio"]
+      if biography_result != nil
+        content = biography_result['content']
+        return content     
+      end
+    end
+    return nil
+  end
+ 
 end
