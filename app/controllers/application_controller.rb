@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   skip_before_filter :verify_authenticity_token
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to login_path, :alert => exception.message
+    redirect_to root_path, :alert => exception.message
   end
 
   def fingerprint_and_duration filepath
