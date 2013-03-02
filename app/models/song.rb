@@ -34,7 +34,7 @@ class Song < ActiveRecord::Base
     {
       "name" => read_attribute(:song_file_name),
       "size" => read_attribute(:song_file_size),
-      "url" => song.url(:original),
+      "url" => Preferences.root_url + song.url(:original),
       "delete_url" => song_path(self),
       "delete_type" => "DELETE" 
     }

@@ -25,6 +25,7 @@ class MusicexplorerController < ApplicationController
   end
 
   def search
+
     filter = params[:filter]
     if filter == nil
       filter = ""
