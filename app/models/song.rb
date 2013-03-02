@@ -106,11 +106,12 @@ class Song < ActiveRecord::Base
       '$' => 's',
       '+' => '&',
     }
-
-    extension = File.extname(song_file_name).downcase
-    name = File.basename(self.song_file_name, ".mp3")
-    replace_characters_hash.each{|k, v| name.gsub!(k,v)}
-    self.song.instance_write(:file_name, "#{name}#{extension}")
+    if song_file_name != nil
+      extension = File.extname(song_file_name).downcase
+      name = File.basename(self.song_file_name, ".mp3")
+      replace_characters_hash.each{|k, v| name.gsub!(k,v)}
+      self.song.instance_write(:file_name, "#{name}#{extension}")
+    end
   end
 
 end

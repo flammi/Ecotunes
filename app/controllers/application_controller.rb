@@ -134,7 +134,6 @@ class ApplicationController < ActionController::Base
   def get_album_infos artist_name, album_name
     pair = Pair.new artist_name, album_name
     if Rails.cache.exist?(pair)
-      puts "value from cache"
       return Rails.cache.read(pair)
     end
     lastfm = Lastfm.new(Preferences.apikey, Preferences.secret)
@@ -142,7 +141,6 @@ class ApplicationController < ActionController::Base
       begin
         result = lastfm.album.get_info(artist_name, album_name)
         Rails.cache.write(pair, result)
-        puts "added in cache"
         return result
       rescue Lastfm::ApiError
       end
