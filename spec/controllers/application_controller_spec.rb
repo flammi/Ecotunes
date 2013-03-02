@@ -4,13 +4,15 @@ describe ApplicationController do
 
   before do
     controller = ApplicationController.new
-    collins_path = Rails.root.join('spec', 'helpers', 'collins.mp3').to_s # file to check
-    eminem_path = Rails.root.join('spec', 'helpers', 'eminem.mp3').to_s
+    collins_path = Rails.root.join('spec', 'test-music', 'collins.mp3').to_s # file to check
+    eminem_path = Rails.root.join('spec', 'test-music', 'eminem.mp3').to_s
+    jackson_path = Rails.root.join('spec', 'test-music', 'jackson.mp3').to_s
 
     @duration1, @fingerprint1 = controller.fingerprint_and_duration collins_path
     @duration2, @fingerprint2 = controller.fingerprint_and_duration collins_path
-    
+
     @duration3, @fingerprint3 = controller.fingerprint_and_duration eminem_path
+    @duration4, @fingerprint4 = controller.fingerprint_and_duration jackson_path
   end
 
   describe "Test get_album_infos" do
@@ -88,5 +90,33 @@ describe ApplicationController do
       result.should eq(nil)
     end
   end
+
+  describe "check acoust-id" do
+    it "should have an acoust_id" do 
+      #duration1, fingerprint1 = Collins
+      acoust_id_response = controller.get_acoust_id_response @duration1, @fingerprint1
+      acoust_id_response.should_not eq(nil)
+
+      score_and_id = controller.get_acoust_id_and_score acoust_id_response
+      score_and_id.should_not eq(nil)
+      score_and_id.should_not eq([])
+
+      score_and_id[0].should eq(0.910272)
+      score_and_id[1].should eq("f44f8395-9ff1-44a3-8ca4-8f672869d1c5")
+    end
+  end
+
+  describe "check description returned from acoust-id" do
+    it "should have an acoust_id" do 
+      #duration4, fingerprint4 = Michael Jackson
+
+      acoust_id_response = controller.get_acoust_id_response @duration4, @fingerprint4
+      acoust_id_response.should_not eq(nil)
+      #acoust_id_result[0].should eq(0.910272)
+      #acoust_id_result[1].should eq("f44f8395-9ff1-44a3-8ca4-8f672869d1c5")
+    end
+  end
+
+
 
 end

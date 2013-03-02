@@ -106,25 +106,30 @@ class ApplicationController < ActionController::Base
     return song
   end
 
-  def get_acoust_id duration, fingerprint
-    result_score = 0
+  def get_acoust_id_and_score acoust_id_response
+    if acoust_id_response != nil and acoust_id_response[0] != nil
+      return acoust_id_response[0]["score"], acoust_id_response[0]["id"]
+    end
+  end
+  
+  def get_acoust_id_response duration, fingerprint
     if fingerprint != nil && duration.to_i > 10
       uri = URI.parse("http://api.acoustid.org/v2/lookup")
       json_response =  Net::HTTP.post_form(uri, 
         {"client" => Preferences.acoustid,
-          "duration" => duration,
-          "fingerprint" => fingerprint})
+        "duration" => duration,
+        "fingerprint" => fingerprint,
+        "meta" => "releasegroups"})
       if json_response != nil 
-          result = JSON.parse(json_response.body)
-          if result["status"] != "error"
-            return result["results"][0]["score"], result["results"][0]["id"]
-          else
-            puts result
-          end
+        result = JSON.parse(json_response.body)
+        if result.has_key?("results")
+          return result["results"]
+        end
       end
     end
     return nil
   end
+
 
   def get_album_infos artist_name, album_name
     pair = Pair.new artist_name, album_name
@@ -256,5 +261,5 @@ class ApplicationController < ActionController::Base
     end
     return nil
   end
- 
+
 end
