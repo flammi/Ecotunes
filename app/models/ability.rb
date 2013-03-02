@@ -7,6 +7,7 @@ class Ability
       can :manage, :all
     elsif user.has_role? :user
       can :read, :all
+      cannot :read, User
     end
 
     
